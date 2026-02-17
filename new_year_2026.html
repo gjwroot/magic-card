@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马到成功 · 2026 新年快乐</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: #fff;
+        }
+
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .main-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 120px;
+            color: #ffd700;
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.6),
+                0 0 60px rgba(255, 215, 0, 0.4);
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+            letter-spacing: 10px;
+        }
+
+        @keyframes titleGlow {
+            from {
+                text-shadow: 
+                    0 0 20px rgba(255, 215, 0, 0.8),
+                    0 0 40px rgba(255, 215, 0, 0.6),
+                    0 0 60px rgba(255, 215, 0, 0.4);
+            }
+            to {
+                text-shadow: 
+                    0 0 30px rgba(255, 215, 0, 1),
+                    0 0 60px rgba(255, 215, 0, 0.8),
+                    0 0 90px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #fff;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 
+                0 10px 30px rgba(255, 107, 107, 0.4),
+                inset 0 -5px 20px rgba(0, 0, 0, 0.2);
+            animation: badgePulse 2s ease-in-out infinite;
+            margin-bottom: 60px;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 
+                    0 10px 30px rgba(255, 107, 107, 0.4),
+                    inset 0 -5px 20px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 
+                    0 15px 40px rgba(255, 107, 107, 0.6),
+                    inset 0 -5px 20px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .message {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            max-width: 800px;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-size: 24px;
+            color: #ffd700;
+            margin-top: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 10;
+            animation: fadeInUp 1s ease-out 2s both;
+            pointer-events: auto;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ffed4e;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 60px;
+                letter-spacing: 5px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .year-badge {
+                font-size: 32px;
+                padding: 12px 30px;
+            }
+
+            .message {
+                font-size: 18px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading-text">正在准备烟花...</div>
+    </div>
+
+    <canvas id="fireworksCanvas"></canvas>
+
+    <div class="content">
+        <h1 class="main-title">马到成功</h1>
+        <p class="subtitle">从 Hello World 到 Happy New Year</p>
+        
+        <div class="year-badge">2026</div>
+        
+        <div class="message">
+            <p>存档 2025 的所有沉淀，加载马年的无限好运！</p>
+            <p>元旦启封，愿你如<span class="highlight">骏马踏春</span>，步步生花</p>
+            <p>兜里有钱、身边有人、心里有光 ✨</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Made with ❤️ by <a href="https://github.com/gjwroot/magic-card" target="_blank">gjwroot</a>
+    </div>
+
+    <script>
+        class Firework {
+            constructor(x, y, targetY, color) {
+                this.x = x;
+                this.y = y;
+                this.targetY = targetY;
+                this.color = color;
+                this.speed = 8 + Math.random() * 4;
+                this.angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.3;
+                this.vx = Math.cos(this.angle) * this.speed;
+                this.vy = Math.sin(this.angle) * this.speed;
+                this.gravity = 0.05;
+                this.friction = 0.99;
+                this.alpha = 1;
+                this.trail = [];
+                this.trailLength = 5;
+                this.exploded = false;
+            }
+
+            update() {
+                this.trail.push({ x: this.x, y: this.y, alpha: this.alpha });
+                if (this.trail.length > this.trailLength) {
+                    this.trail.shift();
+                }
+
+                this.vy += this.gravity;
+                this.vx *= this.friction;
+                this.vy *= this.friction;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.vy >= 0 || this.y <= this.targetY) {
+                    this.exploded = true;
+                }
+            }
+
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+
+                this.trail.forEach((point, index) => {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = (index / this.trailLength) * 0.5;
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        class Particle {
+            constructor(x, y, color, velocity, decay, gravity) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = velocity;
+                this.decay = decay;
+                this.gravity = gravity;
+                this.alpha = 1;
+                this.trail = [];
+                this.trailLength = 3;
+            }
+
+            update() {
+                this.trail.push({ x: this.x, y: this.y, alpha: this.alpha });
+                if (this.trail.length > this.trailLength) {
+                    this.trail.shift();
+                }
+
+                this.velocity.x *= 0.99;
+                this.velocity.y *= 0.99;
+                this.velocity.y += this.gravity;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= this.decay;
+            }
+
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.alpha;
+                ctx.fill();
+
+                this.trail.forEach((point, index) => {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 1, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = point.alpha * (index / this.trailLength);
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        class FireworksSystem {
+            constructor() {
+                this.canvas = document.getElementById('fireworksCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.fireworks = [];
+                this.particles = [];
+                this.colors = [
+                    '#ff0000', '#ff4444', '#ff8888',
+                    '#ffd700', '#ffed4e', '#fff4b8',
+                    '#00ff00', '#44ff44', '#88ff88',
+                    '#00ffff', '#44ffff', '#88ffff',
+                    '#ff00ff', '#ff44ff', '#ff88ff',
+                    '#ff6b6b', '#ee5a6f', '#ff8a80'
+                ];
+                this.autoLaunchTimer = 0;
+                this.autoLaunchInterval = 60;
+
+                this.resizeCanvas();
+                this.bindEvents();
+                this.animate();
+
+                setTimeout(() => {
+                    document.getElementById('loading').classList.add('hidden');
+                    this.launchFirework();
+                }, 1500);
+            }
+
+            resizeCanvas() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            bindEvents() {
+                window.addEventListener('resize', () => this.resizeCanvas());
+                
+                this.canvas.addEventListener('click', (e) => {
+                    this.launchFirework(e.clientX, e.clientY);
+                });
+            }
+
+            launchFirework(targetX, targetY) {
+                const x = targetX || Math.random() * this.canvas.width;
+                const y = this.canvas.height;
+                const targetYFinal = targetY || Math.random() * this.canvas.height * 0.5;
+                const color = this.colors[Math.floor(Math.random() * this.colors.length)];
+                
+                this.fireworks.push(new Firework(x, y, targetYFinal, color));
+            }
+
+            createExplosion(x, y, color) {
+                const particleCount = 80 + Math.random() * 40;
+                const angleIncrement = (Math.PI * 2) / particleCount;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = angleIncrement * i;
+                    const speed = 2 + Math.random() * 6;
+                    const velocity = {
+                        x: Math.cos(angle) * speed,
+                        y: Math.sin(angle) * speed
+                    };
+                    const decay = 0.005 + Math.random() * 0.01;
+                    const gravity = 0.02 + Math.random() * 0.02;
+                    
+                    this.particles.push(new Particle(x, y, color, velocity, decay, gravity));
+                }
+            }
+
+            update() {
+                this.autoLaunchTimer++;
+                if (this.autoLaunchTimer >= this.autoLaunchInterval) {
+                    this.autoLaunchTimer = 0;
+                    this.launchFirework();
+                }
+
+                this.fireworks = this.fireworks.filter(firework => {
+                    firework.update();
+                    
+                    if (firework.exploded) {
+                        this.createExplosion(firework.x, firework.y, firework.color);
+                        return false;
+                    }
+                    
+                    return true;
+                });
+
+                this.particles = this.particles.filter(particle => {
+                    particle.update();
+                    return particle.alpha > 0;
+                });
+            }
+
+            draw() {
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.fireworks.forEach(firework => {
+                    firework.draw(this.ctx);
+                });
+
+                this.particles.forEach(particle => {
+                    particle.draw(this.ctx);
+                });
+            }
+
+            animate() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        window.addEventListener('load', () => {
+            new FireworksSystem();
+        });
+    </script>
+</body>
+</html>
