@@ -1007,11 +1007,13 @@
 
                 document.getElementById('btnFu').addEventListener('click', () => {
                     const bgm = document.getElementById('bgm');
-                    if (bgm.paused) {
-                        bgm.volume = 0.3;
-                        bgm.play().catch(e => console.log('Audio autoplay prevented:', e));
-                    } else {
-                        bgm.pause();
+                    if (bgm) {
+                        if (bgm.paused) {
+                            bgm.volume = 0.3;
+                            bgm.play().catch(e => console.log('Audio autoplay prevented:', e));
+                        } else {
+                            bgm.pause();
+                        }
                     }
                     this.createClickEffect(this.mouse.x, this.mouse.y);
                     this.createRedPacketEffect(this.mouse.x, this.mouse.y, true);
@@ -1870,19 +1872,21 @@
     </script>
     
     <!-- 喜庆的背景音乐 -->
-    <audio id="bgm" src="https://www.soundjay.com/music/mp3s/chinese-new-year.mp3" preload="auto" loop></audio>
+    <!-- 注意：由于 CORS 策略，外部音频链接可能无法播放 -->
+    <!-- 如需添加背景音乐，请将音频文件放在本地，并修改 src 属性 -->
+    <!-- <audio id="bgm" src="your-local-audio-file.mp3" preload="auto" loop></audio> -->
     
     <script>
     // 页面加载时尝试播放音乐
-    window.addEventListener('load', () => {
-        const bgm = document.getElementById('bgm');
-        if (bgm) {
-            bgm.volume = 0.3;
-            bgm.play().catch(e => {
-                console.log('音频自动播放被阻止，需要用户交互后才能播放:', e);
-            });
-        }
-    });
+    // window.addEventListener('load', () => {
+    //     const bgm = document.getElementById('bgm');
+    //     if (bgm) {
+    //         bgm.volume = 0.3;
+    //         bgm.play().catch(e => {
+    //             console.log('音频自动播放被阻止，需要用户交互后才能播放:', e);
+    //         });
+    //     }
+    // });
     </script>
     
     <script src="automated_test.js"></script>
