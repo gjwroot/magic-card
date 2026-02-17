@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>马年大吉 - 动态贺卡生成器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马到成功 - 喜庆互动粒子秀</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
         }
 
         body {
@@ -22,144 +23,6 @@
             position: relative;
             color: #fff;
             transition: background 0.5s ease;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .title h1 {
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .bg-decoration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            will-change: transform, opacity;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 120px;
-            height: 120px;
-            bottom: 10%;
-            left: 30%;
-            animation-delay: 4s;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #ffd700;
-            border-radius: 50%;
-            animation: sparkle 3s ease-in-out infinite;
-            box-shadow: 0 0 10px 2px #ffd700;
-        }
-
-        @keyframes sparkle {
-            0%, 100% {
-                transform: scale(0) rotate(0deg);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1) rotate(180deg);
-                opacity: 1;
-            }
-        }
-
-        .dynamic-line {
-            position: absolute;
-            width: 200px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
-            animation: lineMove 8s ease-in-out infinite;
-        }
-
-        @keyframes lineMove {
-            0% {
-                transform: translateX(-200px) rotate(45deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(calc(100vw + 200px)) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0) scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(-20px) translateX(10px) scale(1.1);
-                opacity: 0.6;
-            }
-        }
-
-        .mouse-follower {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease-out, opacity 0.3s ease;
-            will-change: transform;
-        }
-
-        .parallax {
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .parallax-layer {
-            transition: transform 0.1s ease-out;
-        }
-
-        #card {
-            position: relative;
-            width: 100vw;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
         }
 
         .particles-canvas {
@@ -172,49 +35,36 @@
             z-index: 1;
         }
 
-        .transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #ffd700, #ff6b6b);
-            opacity: 0;
-            z-index: 1000;
-            pointer-events: none;
-            transition: opacity 0.8s ease;
-        }
-
-        .transition-overlay.active {
-            opacity: 1;
+        #card {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
         }
 
         #ui-container {
             text-align: center;
-            margin: 60px 0 40px;
-            padding: 20px;
+            margin: 5px 0 2px;
+            padding: 8px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .vertical-text {
-            display: inline-block;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            margin: 0 20px;
+            max-width: 350px;
         }
 
         .title h1 {
             font-family: 'Ma Shan Zheng', cursive;
-            font-size: 80px;
+            font-size: 45px;
             font-weight: bold;
             color: #ffd700;
-            letter-spacing: 20px;
+            letter-spacing: 8px;
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-            animation: titleAppear 2s ease-out;
+            margin: 0;
         }
 
         .title h1 span {
@@ -227,17 +77,6 @@
         .title h1 span:nth-child(3) { animation-delay: 1s; }
         .title h1 span:nth-child(4) { animation-delay: 1.5s; }
 
-        @keyframes titleAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(100px) scale(0.5);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
         @keyframes letterFloat {
             0%, 100% {
                 transform: translateY(0);
@@ -247,421 +86,450 @@
             }
         }
 
-        .subtitle-group {
-            margin-top: 20px;
-        }
-
         .subtitle p {
-            font-size: 24px;
+            font-size: 18px;
             color: #fff;
             opacity: 0.8;
-            animation: subtitleAppear 1s ease-out 1s both;
-        }
-
-        @keyframes subtitleAppear {
-            0%, 100% {
-                opacity: 0.8;
-                transform: translateY(0);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(-10px);
-            }
-        }
-
-        .countdown {
-            font-size: 24px;
-            color: #ffd700;
-            margin-top: 40px;
-            font-weight: 300;
-            animation: countdownAppear 1s ease-out 1.5s both;
-        }
-
-        @keyframes countdownAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
+            margin: 10px 0 0;
         }
 
         .hint {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-            animation: hintAppear 1s ease-out 2s both;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 10px 20px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
+            display: none;
         }
 
-        @keyframes hintAppear {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            100% {
-                opacity: 0.7;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        .stamp {
+        .control-buttons {
             position: fixed;
             bottom: 40px;
             right: 40px;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
             border: none;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-            animation: stampPulse 2s ease-in-out infinite;
-            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-        }
-
-        .stamp:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
-            animation: stampPulse 1s ease-in-out infinite;
-        }
-
-        .stamp:active {
-            transform: scale(0.95);
-        }
-
-        @keyframes stampPulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
-            }
-        }
-
-        .stamp span {
             font-family: 'Ma Shan Zheng', cursive;
-            font-size: 36px;
-            color: #fff;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .stamp:hover span {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card-generator {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            width: 90%;
-            max-width: 800px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: generatorAppear 1s ease-out 2.5s both;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 60px;
-        }
-
-        @keyframes generatorAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .generator-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffd700;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-label {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-        }
-
-        .form-input {
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #ffd700;
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-select {
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .form-select:focus {
-            outline: none;
-            border-color: #ffd700;
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
-        }
-
-        .button-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
             font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            color: #fff;
             position: relative;
             overflow: hidden;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #333;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
         .btn:active {
-            transform: translateY(0);
+            transform: scale(0.95);
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .card-preview {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .preview-header {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .preview-content {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-            border-radius: 15px;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .btn-fu {
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            color: #fff;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
         }
 
-        .preview-content::before {
-            content: '';
+        .btn-fu:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .fu-icon {
+            position: relative;
+            z-index: 2;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            animation: fuPulse 2s ease-in-out infinite;
+        }
+
+        .fu-light {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: lightPulse 3s ease-in-out infinite;
+            z-index: 1;
         }
 
-        .preview-message {
-            font-size: 24px;
-            color: #fff;
-            text-align: center;
-            line-height: 1.8;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        @keyframes fuPulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            }
+            50% {
+                transform: scale(1.1);
+                text-shadow: 0 0 25px rgba(255, 215, 0, 1);
+            }
+        }
+
+        @keyframes lightPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes fallingPacket {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(-20px) rotate(-10deg) scale(1);
+        opacity: 1;
+    }
+    40% {
+        transform: translateY(20px) rotate(10deg) scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: translateY(60px) rotate(-5deg) scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(120px) rotate(5deg) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(200px) rotate(-10deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes randomFallingPacket {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(100px) translateX(30px) rotate(-15deg) scale(1);
+        opacity: 1;
+    }
+    40% {
+        transform: translateY(300px) translateX(-20px) rotate(10deg) scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: translateY(500px) translateX(40px) rotate(-5deg) scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(700px) translateX(-30px) rotate(15deg) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(900px) translateX(20px) rotate(-10deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes throwRedPacket {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    15% {
+        transform: translate(var(--random-x), var(--random-y)) rotate(90deg) scale(1.3);
+        opacity: 1;
+    }
+    30% {
+        transform: translate(calc(var(--random-x) * 1.8), calc(var(--random-y) * 0.3)) rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+    45% {
+        /* 撞墙效果：突然改变方向 */
+        transform: translate(calc(var(--random-x) * 1.6), calc(var(--random-y) * -0.2)) rotate(225deg) scale(1.1);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(calc(var(--random-x) * 1.2), calc(var(--random-y) * -0.8)) rotate(270deg) scale(1.1);
+        opacity: 0.9;
+    }
+    75% {
+        /* 再次撞墙效果 */
+        transform: translate(calc(var(--random-x) * 0.6), calc(var(--random-y) * -1.2)) rotate(315deg) scale(1);
+        opacity: 0.8;
+    }
+    90% {
+        transform: translate(calc(var(--random-x) * 0.3), calc(var(--random-y) * -0.5)) rotate(360deg) scale(0.9);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(0, 150px) rotate(405deg) scale(0.7);
+        opacity: 0;
+    }
+}
+
+        .btn-fireworks {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+        }
+
+        .btn-mode {
+            background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+        }
+
+        .btn-help {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+
+
+        /* 纯净模式样式 */
+        body.pure-mode {
+            .current-mode {
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            
+            /* 只保留福字光效和控制按钮 */
+            .fu-light,
+            .control-buttons {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+        }
+
+        /* 对联样式 - 调整大小和比例，与横批和谐 */
+        .couplet {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             font-family: 'Ma Shan Zheng', cursive;
-        }
-
-        .preview-footer {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .preview-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-btn {
-            background: #4ecdc4;
-            color: #fff;
-        }
-
-        .share-btn {
-            background: #45b7d1;
-            color: #fff;
-        }
-
-        .preview-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        #loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1a1a2e;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            padding: 30px 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease;
+            margin: 0 40px;
         }
 
-        #loading.hidden {
-            opacity: 0;
-            pointer-events: none;
+        .couplet.left {
+            left: 30px;
         }
 
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255, 215, 0, 0.3);
-            border-top: 4px solid #ffd700;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-            position: relative;
+        .couplet.right {
+            right: 30px;
         }
 
-        .spinner::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            animation: spin 2s linear infinite reverse;
+        .couplet-line {
+            text-align: center;
+            letter-spacing: 5px;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* 响应式调整 */
+        @media (max-width: 1400px) {
+            .couplet {
+                font-size: 20px;
+                height: 500px;
+                padding: 25px 18px;
+                margin: 0 30px;
+            }
         }
 
-        #loading p {
+        @media (max-width: 1200px) {
+            .couplet {
+                font-size: 18px;
+                height: 450px;
+                padding: 20px 15px;
+                margin: 0 20px;
+            }
+            
+            .couplet.left {
+                left: 20px;
+            }
+            
+            .couplet.right {
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .couplet {
+                font-size: 16px;
+                height: 400px;
+                padding: 15px 12px;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .couplet {
+                display: none;
+            }
+        }
+
+        /* 小巧的规则提示样式 */
+        .rule-tooltip {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .rule-tooltip.active {
+            display: block;
+        }
+
+        .rule-tooltip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .rule-tooltip-header h3 {
             color: #ffd700;
             font-size: 18px;
-            animation: pulse 1.5s ease-in-out infinite;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         }
 
-        @keyframes pulse {
-            0%, 100% {
+        .rule-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .rule-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .rule-tooltip-content {
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        .rule-tooltip-section {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .rule-tooltip-section h4 {
+            color: #ffed4e;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(255, 237, 78, 0.5);
+        }
+
+        .rule-tooltip-section p {
+            font-size: 12px;
+            margin: 3px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            to {
                 opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
             }
-            50% {
-                opacity: 0.6;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .rule-tooltip {
+                width: 95%;
+                padding: 15px;
             }
+
+            .rule-tooltip-header h3 {
+                font-size: 16px;
+            }
+
+            .rule-tooltip-section h4 {
+                font-size: 13px;
+            }
+
+            .rule-tooltip-section p {
+                font-size: 11px;
+            }
+        }
+
+        /* 当前模式显示样式 */
+        .current-mode {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            color: #ffd700;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        /* 分数等级显示已移除 */
+        .level-up {
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -671,79 +539,45 @@
             }
 
             #ui-container {
-                margin: 40px 0 20px;
-                padding: 15px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .card-generator {
-                width: 95%;
+                margin: 60px 0 30px;
                 padding: 20px;
-            }
-
-            .preview-content {
-                height: 300px;
-                padding: 20px;
-            }
-
-            .stamp {
-                bottom: 20px;
-                right: 20px;
-                width: 60px;
-                height: 60px;
-            }
-
-            .stamp span {
-                font-size: 24px;
             }
 
             .hint {
-                bottom: 100px;
+                font-size: 14px;
+                padding: 10px 20px;
+                bottom: 180px;
+            }
+
+            .control-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .btn {
+                width: 60px;
+                height: 60px;
+                font-size: 16px;
+            }
+
+            .game-info {
                 font-size: 14px;
                 padding: 8px 16px;
-            }
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-            .stamp {
-                animation: stampPulse 1.5s ease-in-out infinite;
-            }
-
-            .btn:active {
-                transform: scale(0.95);
-            }
-
-            .preview-btn:active {
-                transform: scale(0.95);
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-decoration">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="dynamic-line" style="top: 50%; left: 0; animation-delay: 2s;"></div>
-    </div>
-
     <canvas class="particles-canvas" id="particlesCanvas"></canvas>
 
-    <div class="transition-overlay" id="transitionOverlay"></div>
-
-    <div id="card" class="parallax">
-        <div id="stage"></div>
-        <div class="mouse-follower" id="mouseFollower"></div>
-
-        <div id="ui-container" class="parallax-layer">
-            <div class="vertical-text title">
+    <div id="card">
+        <!-- 左侧对联 -->
+        <div class="couplet left">
+            <div class="couplet-line">龙马精神事业兴</div>
+        </div>
+        
+        <div id="ui-container">
+            <div class="title">
                 <h1>
                     <span>马</span>
                     <span>到</span>
@@ -751,149 +585,76 @@
                     <span>功</span>
                 </h1>
             </div>
-            <div class="subtitle-group">
-                <div class="vertical-text subtitle">
-                    <p>迎春接福·万象更新</p>
-                </div>
+            <div class="subtitle">
+                <p>迎春接福 · 万象更新</p>
             </div>
-            <div id="countdown" class="countdown"></div>
         </div>
-
-        <div id="hint" class="hint">单击屏幕开始粒子跟随 · 双击屏幕切换跟随状态 · 拖拽鼠标创建粒子尾焰 · 甩动鼠标让粒子飞向四周 · 点击“福”开启音乐 · 点击“烟花”按钮放烟花</div>
-
-        <button id="bgm-toggle" class="stamp" type="button" aria-label="背景音乐" aria-pressed="false">
-            <span>福</span>
-        </button>
         
-        <button id="fireworks-toggle" class="stamp" style="bottom: 140px; right: 40px; background: linear-gradient(135deg, #ff6b6b, #ee5a6f);" type="button" aria-label="烟花效果">
-            <span>烟花</span>
-        </button>
+        <!-- 右侧对联 -->
+        <div class="couplet right">
+            <div class="couplet-line">福星高照满堂春</div>
+        </div>
 
-        <div class="card-generator">
-            <div class="generator-title">🎨 马年贺卡生成器</div>
-            
-            <div class="form-grid">
-                <div class="form-group">
-                    <label class="form-label">收卡人称呼</label>
-                    <input type="text" class="form-input" id="recipient" placeholder="例如：亲爱的朋友">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">祝福语（第一句）</label>
-                    <input type="text" class="form-input" id="wish1" placeholder="例如：马到成功">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">祝福语（第二句）</label>
-                    <input type="text" class="form-input" id="wish2" placeholder="例如：万事如意">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">祝福语（第三句）</label>
-                    <input type="text" class="form-input" id="wish3" placeholder="例如：财源广进">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">落款</label>
-                    <input type="text" class="form-input" id="signature" placeholder="例如：你的朋友">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">年份</label>
-                    <input type="text" class="form-input" id="year" placeholder="例如：2026" value="2026">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">动画风格</label>
-                    <select class="form-select" id="style">
-                        <option value="classic">经典风格</option>
-                        <option value="modern">现代风格</option>
-                        <option value="cute">可爱风格</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">背景颜色</label>
-                    <select class="form-select" id="bgColor">
-                        <option value="red">红色</option>
-                        <option value="gold">金色</option>
-                        <option value="blue">蓝色</option>
-                        <option value="purple">紫色</option>
-                    </select>
-                </div>
+        <div id="hint" class="hint">
+            🎮 鼠标交互说明：<br>
+            单击屏幕：开始/停止粒子跟随<br>
+            双击屏幕：切换交互模式<br>
+            拖拽鼠标：创建粒子尾焰<br>
+            甩动鼠标：让粒子飞向四周<br>
+            按空格键：快速切换模式<br>
+            点击按钮：放烟花/开启音乐
+        </div>
+
+        <div class="control-buttons">
+            <button class="btn btn-fu" id="btnFu">
+                <span class="fu-icon">福</span>
+                <span class="fu-light"></span>
+            </button>
+        </div>
+        
+
+
+        <!-- 小巧的规则提示 -->
+        <div class="rule-tooltip" id="ruleTooltip">
+            <div class="rule-tooltip-header">
+                <h3>🎮 游戏规则</h3>
+                <button class="rule-close" id="ruleClose">&times;</button>
             </div>
-            
-            <div class="button-group">
-                <button class="btn btn-primary" onclick="generateCard()">✨ 生成贺卡</button>
-                <button class="btn btn-secondary" onclick="resetForm()">🔄 重置</button>
-            </div>
-            
-            <div class="card-preview">
-                <h3 class="preview-header">贺卡预览</h3>
-                <div class="preview-content" id="previewContent">
-                    <p class="preview-message" id="previewMessage">
-                        亲爱的朋友<br>
-                        马到成功<br>
-                        万事如意<br>
-                        财源广进<br>
-                        你的朋友<br>
-                        2026年
-                    </p>
+            <div class="rule-tooltip-content">
+                <div class="rule-tooltip-section">
+                    <h4>🖱️ 鼠标交互</h4>
+                    <p>单击：切换跟随强度</p>
+                    <p>双击：切换交互模式</p>
+                    <p>拖拽：创建粒子尾焰</p>
+                    <p>甩动：粒子飞向四周</p>
+                    <p>空格：快速切换模式</p>
                 </div>
-                <div class="preview-footer">
-                    <button class="preview-btn download-btn" onclick="downloadCard()">💾 下载</button>
-                    <button class="preview-btn share-btn" onclick="shareCard()">📤 分享</button>
+                <div class="rule-tooltip-section">
+                    <h4>🔘 按钮功能</h4>
+                    <p>福：音乐控制</p>
+                    <p>烟花：发射烟花</p>
+                    <p>模式：切换模式</p>
+                    <p>?: 查看规则</p>
+                </div>
+                <div class="rule-tooltip-section">
+                    <h4>🎯 当前模式</h4>
+                    <p id="currentModeDescription">粒子被鼠标吸引</p>
                 </div>
             </div>
         </div>
 
-        <div id="loading">
-            <div class="spinner"></div>
-            <p>加载中...</p>
+        <!-- 当前模式显示 -->
+        <div class="current-mode" id="currentMode">
+            吸引模式
         </div>
 
-        <audio id="bgm" src="https://www.soundjay.com/music/mp3s/chinese-new-year.mp3" preload="auto" loop></audio>
+        <!-- 分数等级显示已移除 -->
+        <div class="level-up" id="levelUp"></div>
     </div>
 
+    <audio id="bgm" src="https://www.soundjay.com/music/mp3s/chinese-new-year.mp3" preload="auto" loop></audio>
+
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loading').classList.add('hidden');
-                initParticleSystem();
-                startCountdown();
-            }, 2000);
-        });
-
-        function startCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            const targetDate = new Date('2026-02-17 00:00:00');
-            
-            function updateCountdown() {
-                const now = new Date();
-                const diff = targetDate - now;
-                
-                if (diff <= 0) {
-                    countdownElement.textContent = '新春快乐！';
-                    return;
-                }
-                
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                countdownElement.textContent = `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
-            }
-            
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
-
-        function getRandomColor() {
-            const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-
         class FireworksSystem {
             constructor(canvas) {
                 this.canvas = canvas;
@@ -903,7 +664,7 @@
                 this.colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
                 this.gravity = 0.2;
             }
-            
+
             createFirework(x, y) {
                 this.fireworks.push({
                     x: x,
@@ -916,23 +677,23 @@
                     trail: []
                 });
             }
-            
+
             update() {
                 this.fireworks.forEach((firework, index) => {
                     firework.x += Math.cos(firework.angle) * firework.speed;
                     firework.y += Math.sin(firework.angle) * firework.speed;
-                    
+
                     firework.trail.push({ x: firework.x, y: firework.y, alpha: 1 });
                     if (firework.trail.length > 20) {
                         firework.trail.shift();
                     }
-                    
+
                     if (firework.y <= firework.targetY) {
                         this.createExplosion(firework.x, firework.y, firework.color);
                         this.fireworks.splice(index, 1);
                     }
                 });
-                
+
                 this.particles.forEach((particle, index) => {
                     particle.speedY += this.gravity;
                     particle.x += particle.speedX;
@@ -940,20 +701,20 @@
                     particle.speedX *= 0.98;
                     particle.speedY *= 0.98;
                     particle.life--;
-                    
+
                     if (particle.life <= 0) {
                         this.particles.splice(index, 1);
                     }
                 });
             }
-            
+
             createExplosion(x, y, color) {
                 const particleCount = 50 + Math.floor(Math.random() * 30);
-                
+
                 for (let i = 0; i < particleCount; i++) {
                     const angle = (Math.PI * 2 / particleCount) * i;
                     const speed = 2 + Math.random() * 4;
-                    
+
                     this.particles.push({
                         x: x,
                         y: y,
@@ -965,7 +726,7 @@
                     });
                 }
             }
-            
+
             draw() {
                 this.fireworks.forEach(firework => {
                     firework.trail.forEach((point, index) => {
@@ -977,13 +738,13 @@
                         this.ctx.fill();
                         this.ctx.globalAlpha = 1;
                     });
-                    
+
                     this.ctx.beginPath();
                     this.ctx.arc(firework.x, firework.y, 4, 0, Math.PI * 2);
                     this.ctx.fillStyle = firework.color;
                     this.ctx.fill();
                 });
-                
+
                 this.particles.forEach(particle => {
                     const alpha = particle.life / 150;
                     this.ctx.beginPath();
@@ -994,572 +755,546 @@
                     this.ctx.globalAlpha = 1;
                 });
             }
-            
-            hexToRgb(hex) {
-                hex = hex.replace('#', '');
-                const r = parseInt(hex.substring(0, 2), 16);
-                const g = parseInt(hex.substring(2, 4), 16);
-                const b = parseInt(hex.substring(4, 6), 16);
-                return `${r}, ${g}, ${b}`;
-            }
         }
-        
+
         class ParticleSystem {
             constructor() {
                 this.canvas = document.getElementById('particlesCanvas');
                 this.ctx = this.canvas.getContext('2d');
                 this.particles = [];
-                this.mouse = { x: 0, y: 0, radius: 250, speed: 0, isHovering: false };
-                this.isMouseActive = false;
-                this.particleCount = 120;
-                
-                this.lastDragX = null;
-                this.lastDragY = null;
+                this.mouse = { x: 0, y: 0, radius: 300, speed: 0 };
+                this.isFollowing = false;
                 this.isDragging = false;
-                this.clickCount = 0;
-                this.clickTimer = null;
                 this.dragStart = { x: 0, y: 0 };
                 this.dragEnd = { x: 0, y: 0 };
                 this.dragDistance = 0;
                 this.dragSpeed = 0;
-                
-                this.isFollowing = false;
-                this.followMode = 'click-to-toggle';
-                
-                this.interactionMode = 'attract';
-                this.mouseModes = {
-                    attract: '吸引模式',
-                    repel: '排斥模式',
-                    trail: '轨迹模式',
-                    shape: '形状模式',
-                    wave: '波浪模式',
-                    vortex: '漩涡模式',
-                    gravity: '重力模式',
-                    bounce: '弹跳模式'
-                };
-                
-                this.mouseTrail = [];
-                this.maxTrailLength = 40;
-                
-                this.animationFrame = null;
                 this.lastMouseX = 0;
                 this.lastMouseY = 0;
                 this.lastFrameTime = performance.now();
-                
-                this.theme = 'golden';
+                this.minFrameInterval = 16;
+
+                this.interactionMode = 'attract';
+                this.modes = [
+                    { id: 'attract', name: '吸引模式', description: '粒子被鼠标吸引' },
+                    { id: 'repel', name: '排斥模式', description: '粒子被鼠标排斥' },
+                    { id: 'trail', name: '轨迹模式', description: '粒子跟随鼠标轨迹' },
+                    { id: 'shape', name: '形状模式', description: '粒子形成圆形环绕' },
+                    { id: 'wave', name: '波浪模式', description: '粒子形成波浪效果' },
+                    { id: 'vortex', name: '漩涡模式', description: '粒子形成漩涡效果' },
+                    { id: 'gravity', name: '重力模式', description: '粒子被鼠标强烈吸引' },
+                    { id: 'bounce', name: '弹跳模式', description: '粒子在鼠标附近弹跳' }
+                ];
+                this.currentModeIndex = 0;
+
+                this.particleCount = 100;
+                this.mouseTrail = [];
+                this.maxTrailLength = 50;
+                this.trails = [];
+                this.maxTrails = 30;
+                this.ripples = [];
+                this.maxRipples = 5;
+
+                // 分数等级系统已移除
+                this.comboCount = 0;
+                this.comboTimer = null;
+
                 this.themes = {
                     golden: {
                         colors: ['#ffd700', '#ffed4e', '#ffc107', '#ff9800', '#ff5722'],
                         bg: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'
-                    },
-                    neon: {
-                        colors: ['#ff00ff', '#00ffff', '#ffff00', '#ff0066', '#00ff66'],
-                        bg: 'linear-gradient(135deg, #0f0c29 0%, #302b63 100%)'
-                    },
-                    sunset: {
-                        colors: ['#ff6b6b', '#ee5a6f', '#feca57', '#48dbfb', '#48dbfb'],
-                        bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                    },
-                    spring: {
-                        colors: ['#96ceb4', '#ffcc5c', '#ff6f69', '#d96459', '#556270'],
-                        bg: 'linear-gradient(135deg, #f7fbfc 0%, #e8f4f8 100%)'
                     }
                 };
-                
-                this.ripples = [];
-                this.trails = [];
-                this.comboCount = 0;
-                this.comboTimer = null;
-                
-                this.score = 0;
-                this.highScore = 0;
-                this.level = 1;
-                this.experience = 0;
-                this.achievements = [];
-                
-                this.effectCounter = 0;
-                this.maxEffects = 500;
-                
-                this.maxRipples = 5;
-                this.maxTrails = 20;
-                this.maxDragParticles = 12;
-                this.minFrameInterval = 16;
-                
+                this.theme = 'golden';
+
                 this.fireworksSystem = new FireworksSystem(this.canvas);
-                
-                this.initCanvas();
+
+                this.init();
+            }
+
+            init() {
+                this.resizeCanvas();
+                this.addResizeListener();
                 this.initParticles();
                 this.bindEvents();
                 this.animate();
                 this.createInitialEffect();
-                this.showInteractionHint();
-                this.initGameElements();
+                // 初始化当前模式显示
+                this.updateCurrentModeDisplay();
+                // 启动自动抛洒红包的定时器
+                this.startAutoRedPacketTimer();
+                window.particleSystem = this;
             }
-            
-            initGameElements() {
-                this.scoreElement = document.createElement('div');
-                this.scoreElement.style.position = 'fixed';
-                this.scoreElement.style.top = '20px';
-                this.scoreElement.style.left = '20px';
-                this.scoreElement.style.color = '#ffd700';
-                this.scoreElement.style.fontSize = '20px';
-                this.scoreElement.style.fontWeight = 'bold';
-                this.scoreElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.8)';
-                this.scoreElement.style.zIndex = '1000';
-                this.scoreElement.textContent = '分数: 0 | 等级: 1';
-                document.body.appendChild(this.scoreElement);
-                
-                this.comboElement = document.createElement('div');
-                this.comboElement.style.position = 'fixed';
-                this.comboElement.style.top = '50%';
-                this.comboElement.style.left = '50%';
-                this.comboElement.style.transform = 'translate(-50%, -50%)';
-                this.comboElement.style.color = '#ff6b6b';
-                this.comboElement.style.fontSize = '48px';
-                this.comboElement.style.fontWeight = 'bold';
-                this.comboElement.style.textShadow = '0 0 20px rgba(255, 107, 107, 0.8)';
-                this.comboElement.style.zIndex = '1000';
-                this.comboElement.style.opacity = '0';
-                this.comboElement.style.transition = 'opacity 0.3s ease';
-                this.comboElement.textContent = 'COMBO!';
-                document.body.appendChild(this.comboElement);
-            }
-            
-            updateScore(points) {
-                this.score += points;
-                this.experience += points;
-                
-                const nextLevel = Math.floor(this.experience / 1000) + 1;
-                if (nextLevel > this.level) {
-                    this.level = nextLevel;
-                    this.createLevelUpEffect(this.mouse.x, this.mouse.y);
-                }
-                
-                if (this.score > this.highScore) {
-                    this.highScore = this.score;
-                }
-                
-                if (this.scoreElement) {
-                    this.scoreElement.textContent = `分数: ${this.score} | 等级: ${this.level} | 最高分: ${this.highScore}`;
-                }
-            }
-            
-            createLevelUpEffect(x, y) {
-                const particleCount = 60;
-                const colors = this.themes[this.theme].colors;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const angle = (Math.PI * 2 / particleCount) * i;
-                    const speed = 6 + Math.random() * 4;
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    
-                    this.particles.push({
-                        ...this.createParticle(x, y),
-                        speedX: Math.cos(angle) * speed,
-                        speedY: Math.sin(angle) * speed,
-                        color: color,
-                        life: 2000,
-                        maxLife: 2000,
-                        glowIntensity: 3,
-                        size: Math.random() * 3 + 2,
-                        isLevelUp: true
-                    });
-                }
-                
-                const levelUpElement = document.createElement('div');
-                levelUpElement.style.position = 'fixed';
-                levelUpElement.style.top = '50%';
-                levelUpElement.style.left = '50%';
-                levelUpElement.style.transform = 'translate(-50%, -50%)';
-                levelUpElement.style.color = '#4ecdc4';
-                levelUpElement.style.fontSize = '36px';
-                levelUpElement.style.fontWeight = 'bold';
-                levelUpElement.style.textShadow = '0 0 20px rgba(78, 205, 196, 0.8)';
-                levelUpElement.style.zIndex = '1000';
-                levelUpElement.style.opacity = '0';
-                levelUpElement.style.transition = 'opacity 0.5s ease';
-                levelUpElement.textContent = `等级 ${this.level}!`;
-                document.body.appendChild(levelUpElement);
-                
-                setTimeout(() => {
-                    levelUpElement.style.opacity = '1';
-                }, 100);
-                
-                setTimeout(() => {
-                    levelUpElement.style.opacity = '0';
+
+            // 启动自动抛洒红包的定时器
+            startAutoRedPacketTimer() {
+                // 每3-8秒随机抛洒一次红包
+                const randomInterval = () => {
+                    const interval = Math.random() * 5000 + 3000; // 3-8秒
                     setTimeout(() => {
-                        document.body.removeChild(levelUpElement);
-                    }, 500);
-                }, 2000);
+                        this.autoThrowRedPackets();
+                        randomInterval();
+                    }, interval);
+                };
+                randomInterval();
             }
-            
-            showInteractionHint() {
-                setTimeout(() => {
-                    const hint = document.getElementById('hint');
-                    if (hint) {
-                        hint.textContent = '🎮 交互提示：单击开始跟随 · 双击停止跟随 · 拖拽甩动粒子 · 按空格键切换交互模式 · 点击烟花按钮放烟花 · 鼠标悬停产生特效';
-                    }
-                }, 1000);
+
+            // 自动向天空抛洒红包
+            autoThrowRedPackets() {
+                // 从福字按钮位置开始抛洒
+                const btnFu = document.getElementById('btnFu');
+                if (btnFu) {
+                    const rect = btnFu.getBoundingClientRect();
+                    const btnX = rect.left + rect.width / 2;
+                    const btnY = rect.top + rect.height / 2;
+                    console.log('🧧 从福字按钮向天空抛洒红包');
+                    this.createRedPacketEffect(btnX, btnY, true); // 传入true表示向天空抛洒
+                }
             }
-            
-            createInitialEffect() {
-                setTimeout(() => {
-                    const centerX = this.canvas.width / 2;
-                    const centerY = this.canvas.height / 2;
-                    const particleCount = 50;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const speed = Math.random() * 3 + 1;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        
-                        this.particles.push({
-                            ...this.createParticle(centerX, centerY),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 2000,
-                            maxLife: 2000,
-                            glowIntensity: 2,
-                            size: Math.random() * 2 + 1
-                        });
-                    }
-                }, 1000);
-            }
-            
-            initCanvas() {
-                this.resizeCanvas();
-                window.addEventListener('resize', () => this.resizeCanvas());
-            }
-            
+
             resizeCanvas() {
                 this.canvas.width = window.innerWidth;
                 this.canvas.height = window.innerHeight;
             }
-            
+
+            // 在初始化时只添加一次窗口大小变化事件监听器
+            addResizeListener() {
+                window.addEventListener('resize', () => this.resizeCanvas());
+            }
+
             initParticles() {
                 this.particles = [];
                 for (let i = 0; i < this.particleCount; i++) {
                     this.particles.push(this.createParticle());
                 }
             }
-            
+
             createParticle(x = null, y = null) {
                 const theme = this.themes[this.theme];
-                const vibrantColors = theme.colors;
-                
+                const colors = theme.colors;
+
                 return {
                     x: x !== null ? x : Math.random() * this.canvas.width,
                     y: y !== null ? y : Math.random() * this.canvas.height,
-                    size: Math.random() * 2 + 0.5,
-                    speedX: 0,
-                    speedY: 0,
-                    color: vibrantColors[Math.floor(Math.random() * vibrantColors.length)],
-                    originalX: x !== null ? x : Math.random() * this.canvas.width,
-                    originalY: y !== null ? y : Math.random() * this.canvas.height,
-                    attraction: 0.01,
-                    friction: 0.9,
-                    selfMotionType: 'none',
-                    wanderAngle: 0,
-                    wanderSpeed: 0,
-                    orbitCenterX: 0,
-                    orbitCenterY: 0,
-                    orbitRadius: 0,
-                    orbitAngle: 0,
-                    orbitSpeed: 0,
-                    life: Math.random() * 3000 + 2000,
-                    maxLife: Math.random() * 3000 + 2000,
-                    mouseSensitivity: 2.0,
-                    glowIntensity: Math.random() * 0.5 + 0.5
+                    size: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * 2,
+                    speedY: (Math.random() - 0.5) * 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    life: 3000 + Math.random() * 2000,
+                    maxLife: 3000 + Math.random() * 2000,
+                    friction: 0.92,
+                    glowIntensity: Math.random() * 1 + 0.5
                 };
             }
-            
-            darkenColor(color, amount) {
-                color = color.replace('#', '');
-                let r = parseInt(color.substring(0, 2), 16);
-                let g = parseInt(color.substring(2, 4), 16);
-                let b = parseInt(color.substring(4, 6), 16);
-                
-                r = Math.floor(r * (1 - amount));
-                g = Math.floor(g * (1 - amount));
-                b = Math.floor(b * (1 - amount));
-                
-                r = Math.max(0, Math.min(255, r));
-                g = Math.max(0, Math.min(255, g));
-                b = Math.max(0, Math.min(255, b));
-                
-                return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-            }
-            
+
             bindEvents() {
                 let clickTime = 0;
-                
+                let lastMouseMoveTime = 0;
+                const mouseMoveThrottle = 16; // 约60fps
+
                 document.addEventListener('mousemove', (e) => {
-                    this.mouse.speed = Math.sqrt(
-                        Math.pow(e.clientX - this.lastMouseX, 2) + 
-                        Math.pow(e.clientY - this.lastMouseY, 2)
-                    );
-                    this.lastMouseX = e.clientX;
-                    this.lastMouseY = e.clientY;
-                    
-                    this.mouse.x = e.clientX;
-                    this.mouse.y = e.clientY;
-                    this.isMouseActive = true;
-                    this.mouse.isHovering = true;
-                    
-                    this.mouseTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
-                    if (this.mouseTrail.length > this.maxTrailLength) {
-                        this.mouseTrail.shift();
+                    const currentTime = performance.now();
+                    if (currentTime - lastMouseMoveTime < mouseMoveThrottle) {
+                        return;
                     }
-                    
-                    if (this.trails.length < this.maxTrails) {
-                        this.createTrail(e.clientX, e.clientY);
+                    lastMouseMoveTime = currentTime;
+
+                    // 检查是否点击在按钮上，如果是，不更新鼠标坐标以避免干扰按钮交互
+                    const target = e.target;
+                    const isButton = target && typeof target.closest === 'function' && target.closest('button');
+                    if (!isButton) {
+                        this.mouse.speed = Math.sqrt(
+                            Math.pow(e.clientX - this.lastMouseX, 2) + 
+                            Math.pow(e.clientY - this.lastMouseY, 2)
+                        );
+                        this.lastMouseX = e.clientX;
+                        this.lastMouseY = e.clientY;
+                        this.mouse.x = e.clientX;
+                        this.mouse.y = e.clientY;
+
+                        this.mouseTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+                        if (this.mouseTrail.length > this.maxTrailLength) {
+                            this.mouseTrail.shift();
+                        }
+
+                        if (this.trails.length < this.maxTrails) {
+                            this.createTrail(e.clientX, e.clientY);
+                        }
+
+                        if (this.isDragging) {
+                            this.dragEnd.x = e.clientX;
+                            this.dragEnd.y = e.clientY;
+                            const dx = e.clientX - this.dragStart.x;
+                            const dy = e.clientY - this.dragStart.y;
+                            this.dragDistance = Math.sqrt(dx * dx + dy * dy);
+                            this.dragSpeed = this.mouse.speed;
+                            this.createDragTrail(e.clientX, e.clientY);
+                        }
                     }
-                    
-                    this.handleMouseInteraction(e.clientX, e.clientY);
-                    
-                    if (this.isDragging) {
+                });
+
+                document.addEventListener('mousedown', (e) => {
+                    // 检查是否点击在按钮上，如果是，不设置isDragging为true
+                    const target = e.target;
+                    const isButton = target && typeof target.closest === 'function' && target.closest('button');
+                    if (!isButton) {
+                        this.isDragging = true;
+                        this.dragStart.x = e.clientX;
+                        this.dragStart.y = e.clientY;
                         this.dragEnd.x = e.clientX;
                         this.dragEnd.y = e.clientY;
-                        const dx = e.clientX - this.dragStart.x;
-                        const dy = e.clientY - this.dragStart.y;
-                        this.dragDistance = Math.sqrt(dx * dx + dy * dy);
-                        this.dragSpeed = this.mouse.speed;
-                        this.createDragTrail(e.clientX, e.clientY);
                     }
                 });
-                
-                document.addEventListener('mouseleave', () => {
-                    this.isMouseActive = false;
-                    this.isDragging = false;
-                    this.mouse.isHovering = false;
-                    this.lastDragX = null;
-                    this.lastDragY = null;
-                    this.mouseTrail = [];
+
+                // 确保按钮点击事件能够正常触发
+                document.querySelectorAll('button').forEach(button => {
+                    button.addEventListener('mousedown', (e) => {
+                        e.stopPropagation();
+                    });
+                    button.addEventListener('mouseup', (e) => {
+                        e.stopPropagation();
+                    });
                 });
-                
-                document.addEventListener('mousedown', (e) => {
-                    this.isDragging = true;
-                    this.dragStart.x = e.clientX;
-                    this.dragStart.y = e.clientY;
-                    this.dragEnd.x = e.clientX;
-                    this.dragEnd.y = e.clientY;
-                    this.lastDragX = e.clientX;
-                    this.lastDragY = e.clientY;
-                    this.dragDistance = 0;
-                    this.dragSpeed = 0;
-                });
-                
+
                 document.addEventListener('mouseup', (e) => {
-                    if (this.isDragging) {
+                    // 检查是否点击在按钮上，如果是，不执行拖拽逻辑
+                    const target = e.target;
+                    const isButton = target && typeof target.closest === 'function' && target.closest('button');
+                    if (!isButton && this.isDragging) {
                         const dx = e.clientX - this.dragStart.x;
                         const dy = e.clientY - this.dragStart.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < 5) {
+
+                        if (distance < 10) {
                             const currentTime = new Date().getTime();
                             const timeSinceLastClick = currentTime - clickTime;
-                            
+
                             if (timeSinceLastClick < 300) {
-                                this.toggleFollowing(!this.isFollowing);
+                                this.switchMode();
                                 this.createDoubleClickEffect(e.clientX, e.clientY);
                             } else {
-                                this.toggleFollowing(true);
-                                this.handleClick(e.clientX, e.clientY);
+                                this.toggleFollowing();
+                                this.createClickEffect(e.clientX, e.clientY);
                             }
-                            
+
                             clickTime = currentTime;
                         } else {
-                            this.createDragEndEffect(this.dragStart, this.dragEnd);
                             this.applySwingForce(this.dragStart, this.dragEnd);
-                            this.isFollowing = false;
-                            this.createDragEndStopEffect(e.clientX, e.clientY);
-                        }
-                        
-                        this.isDragging = false;
-                        this.lastDragX = null;
-                        this.lastDragY = null;
-                    }
-                });
-                
-                document.addEventListener('touchstart', (e) => {
-                    const touch = e.touches[0];
-                    this.isDragging = true;
-                    this.dragStart.x = touch.clientX;
-                    this.dragStart.y = touch.clientY;
-                    this.dragEnd.x = touch.clientX;
-                    this.dragEnd.y = touch.clientY;
-                    this.lastDragX = touch.clientX;
-                    this.lastDragY = touch.clientY;
-                    this.lastMouseX = touch.clientX;
-                    this.lastMouseY = touch.clientY;
-                });
-                
-                document.addEventListener('touchmove', (e) => {
-                    const touch = e.touches[0];
-                    
-                    this.mouse.speed = Math.sqrt(
-                        Math.pow(touch.clientX - this.lastMouseX, 2) + 
-                        Math.pow(touch.clientY - this.lastMouseY, 2)
-                    );
-                    this.lastMouseX = touch.clientX;
-                    this.lastMouseY = touch.clientY;
-                    
-                    this.mouse.x = touch.clientX;
-                    this.mouse.y = touch.clientY;
-                    this.isMouseActive = true;
-                    
-                    if (this.isDragging) {
-                        this.dragEnd.x = touch.clientX;
-                        this.dragEnd.y = touch.clientY;
-                        this.createDragTrail(touch.clientX, touch.clientY);
-                    }
-                });
-                
-                document.addEventListener('touchend', (e) => {
-                    if (this.isDragging) {
-                        const touch = e.changedTouches[0];
-                        const dx = touch.clientX - this.dragStart.x;
-                        const dy = touch.clientY - this.dragStart.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < 10) {
-                            this.handleClick(touch.clientX, touch.clientY);
-                        } else {
                             this.createDragEndEffect(this.dragStart, this.dragEnd);
+                            this.isFollowing = false;
+                            // 分数等级系统已移除
                         }
-                        
+
                         this.isDragging = false;
-                        this.lastDragX = null;
-                        this.lastDragY = null;
+                    } else if (isButton) {
+                        // 如果点击在按钮上，重置isDragging状态
+                        this.isDragging = false;
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === ' ') {
+                        e.preventDefault();
+                        this.switchMode();
+                    }
+                });
+
+                // 烟花按钮已移除，功能通过其他方式触发
+                // document.getElementById('btnFireworks').addEventListener('click', () => {
+                //     this.createFireworks(this.mouse.x, this.mouse.y);
+                //     // 分数等级系统已移除
+                // });
+
+                document.getElementById('btnFu').addEventListener('click', () => {
+                    const bgm = document.getElementById('bgm');
+                    if (bgm.paused) {
+                        bgm.volume = 0.3;
+                        bgm.play().catch(e => console.log('Audio autoplay prevented:', e));
+                    } else {
+                        bgm.pause();
+                    }
+                    this.createClickEffect(this.mouse.x, this.mouse.y);
+                    this.createRedPacketEffect(this.mouse.x, this.mouse.y, true);
+                    // 添加向天空发射烟花的效果
+                    this.createFireworks(this.mouse.x, this.mouse.y);
+                    // 分数等级系统已移除
+                });
+
+                // 移除对btnHelp按钮的事件监听器绑定，因为该按钮不存在
+
+                document.getElementById('ruleClose').addEventListener('click', () => {
+                    document.getElementById('ruleTooltip').classList.remove('active');
+                });
+
+                // 点击外部关闭
+                document.addEventListener('click', (e) => {
+                    const ruleTooltip = document.getElementById('ruleTooltip');
+                    if (ruleTooltip && ruleTooltip.classList.contains('active') && 
+                        !ruleTooltip.contains(e.target)) {
+                        ruleTooltip.classList.remove('active');
+                    }
+                });
+
+                // 鼠标离开界面时结束鼠标事件
+                document.addEventListener('mouseleave', (e) => {
+                    // 重置鼠标状态
+                    this.isDragging = false;
+                    this.isFollowing = false;
+                    this.mouse.speed = 0;
+                    // 将鼠标坐标重置到屏幕外，确保粒子不会继续受到影响
+                    this.mouse.x = -10000;
+                    this.mouse.y = -10000;
+                    console.log('🖱️  鼠标已离开界面，重置鼠标状态');
+                });
+
+
+                
+
+                
+
+                
+
+                
+                // 纯净模式功能
+                window.isPureMode = false;
+                
+                // ESC键退出纯净模式
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && window.isPureMode) {
+                        window.isPureMode = false;
+                        document.body.classList.remove('pure-mode');
+                        console.log('✨ 已退出纯净模式');
                     }
                 });
                 
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === '1') {
-                        this.theme = 'golden';
-                        this.resetParticles();
-                    } else if (e.key === '2') {
-                        this.theme = 'neon';
-                        this.resetParticles();
-                    } else if (e.key === '3') {
-                        this.theme = 'sunset';
-                        this.resetParticles();
-                    } else if (e.key === ' ') {
-                        this.switchInteractionMode();
-                    }
-                });
+                // 初始化完成
+                console.log('🎉 粒子系统初始化完成');
             }
-            
-            handleMouseInteraction(x, y) {
+
+            toggleFollowing() {
+                this.isFollowing = !this.isFollowing;
                 if (this.isFollowing) {
-                    this.particles.forEach(particle => {
-                        if (!particle.gravity) {
-                            const dx = x - particle.x;
-                            const dy = y - particle.y;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-                            
-                            if (distance < this.mouse.radius) {
-                                const forceDirectionX = dx / distance;
-                                const forceDirectionY = dy / distance;
-                                const force = (this.mouse.radius - distance) / this.mouse.radius;
-                                let followForce = force * 0.8;
-                                
-                                switch (this.interactionMode) {
-                                    case 'attract':
-                                        particle.speedX += forceDirectionX * followForce * 4;
-                                        particle.speedY += forceDirectionY * followForce * 4;
-                                        break;
-                                    case 'repel':
-                                        particle.speedX -= forceDirectionX * followForce * 6;
-                                        particle.speedY -= forceDirectionY * followForce * 6;
-                                        break;
-                                    case 'trail':
-                                        if (this.mouseTrail.length > 5) {
-                                            const trailPoint = this.mouseTrail[Math.floor(this.mouseTrail.length * 0.7)];
-                                            const trailDx = trailPoint.x - particle.x;
-                                            const trailDy = trailPoint.y - particle.y;
-                                            const trailDistance = Math.sqrt(trailDx * trailDx + trailDy * trailDistance);
-                                            if (trailDistance < this.mouse.radius) {
-                                                const trailForceDirectionX = trailDx / trailDistance;
-                                                const trailForceDirectionY = trailDy / trailDistance;
-                                                const trailForce = (this.mouse.radius - trailDistance) / this.mouse.radius;
-                                                particle.speedX += trailForceDirectionX * trailForce * 3;
-                                                particle.speedY += trailForceDirectionY * trailForce * 3;
-                                            }
-                                        }
-                                        break;
-                                    case 'shape':
-                                        const angle = Math.atan2(dy, dx);
-                                        const targetDistance = this.mouse.radius * 0.6;
-                                        const distanceDiff = targetDistance - distance;
-                                        particle.speedX += Math.cos(angle) * distanceDiff * 0.02;
-                                        particle.speedY += Math.sin(angle) * distanceDiff * 0.02;
-                                        particle.speedX += -Math.sin(angle) * 3;
-                                        particle.speedY += Math.cos(angle) * 3;
-                                        break;
-                                    case 'wave':
-                                        const waveAngle = Math.atan2(dy, dx);
-                                        const waveDistance = distance / this.mouse.radius;
-                                        const waveForce = Math.sin(Date.now() * 0.003 + waveDistance * 5) * force * 0.5;
-                                        particle.speedX += Math.cos(waveAngle) * waveForce * 4;
-                                        particle.speedY += Math.sin(waveAngle) * waveForce * 4;
-                                        break;
-                                    case 'vortex':
-                                        const vortexAngle = Math.atan2(dy, dx);
-                                        const vortexDistance = distance / this.mouse.radius;
-                                        const vortexForce = force * 0.8;
-                                        particle.speedX += -Math.sin(vortexAngle) * vortexForce * 3;
-                                        particle.speedY += Math.cos(vortexAngle) * vortexForce * 3;
-                                        particle.speedX += Math.cos(vortexAngle) * vortexForce * 2;
-                                        particle.speedY += Math.sin(vortexAngle) * vortexForce * 2;
-                                        break;
-                                    case 'gravity':
-                                        const gravityForce = force * 1.2;
-                                        particle.speedX += forceDirectionX * gravityForce * 8;
-                                        particle.speedY += forceDirectionY * gravityForce * 8;
-                                        break;
-                                    case 'bounce':
-                                        if (distance < this.mouse.radius * 0.3) {
-                                            particle.speedX -= forceDirectionX * force * 10;
-                                            particle.speedY -= forceDirectionY * force * 10;
-                                        } else if (distance < this.mouse.radius) {
-                                            particle.speedX += forceDirectionX * force * 3;
-                                            particle.speedY += forceDirectionY * force * 3;
-                                        }
-                                        break;
-                                }
-                            }
-                        }
+                    this.mouse.radius = 400;
+                    this.showHint('🔄 粒子跟随强度：高');
+                } else {
+                    this.mouse.radius = 300;
+                    this.showHint('🔄 粒子跟随强度：中');
+                }
+            }
+
+            switchMode() {
+                this.currentModeIndex = (this.currentModeIndex + 1) % this.modes.length;
+                this.interactionMode = this.modes[this.currentModeIndex].id;
+                this.showHint(`🎮 切换到${this.modes[this.currentModeIndex].name}`);
+                this.createModeChangeEffect(this.mouse.x, this.mouse.y);
+                this.createFireworks(this.mouse.x, this.mouse.y);
+                // 更新当前模式显示
+                this.updateCurrentModeDisplay();
+                // 分数等级系统已移除
+            }
+
+            // 更新当前模式显示
+            updateCurrentModeDisplay() {
+                const currentMode = this.modes[this.currentModeIndex];
+                const currentModeElement = document.getElementById('currentMode');
+                if (currentModeElement) {
+                    currentModeElement.textContent = `${currentMode.name}`;
+                }
+            }
+
+            // 移除点击提示功能
+            showHint(text) {
+                // 空方法，不再显示临时提示
+            }
+
+            createClickEffect(x, y) {
+                const particleCount = 20;
+                const colors = this.themes[this.theme].colors;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = (Math.PI * 2 / particleCount) * i;
+                    const speed = 3 + Math.random() * 3;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    this.particles.push({
+                        ...this.createParticle(x, y),
+                        speedX: Math.cos(angle) * speed,
+                        speedY: Math.sin(angle) * speed,
+                        life: 1000,
+                        maxLife: 1000,
+                        glowIntensity: 1.5
+                    });
+                }
+
+                if (this.ripples.length < this.maxRipples) {
+                    this.ripples.push({
+                        x: x,
+                        y: y,
+                        radius: 0,
+                        maxRadius: 150,
+                        alpha: 1,
+                        color: colors[0]
+                    });
+                }
+
+                this.handleCombo();
+            }
+
+            createDoubleClickEffect(x, y) {
+                const particleCount = 30;
+                const colors = this.themes[this.theme].colors;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = (Math.PI * 2 / particleCount) * i;
+                    const speed = 5 + Math.random() * 3;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    this.particles.push({
+                        ...this.createParticle(x, y),
+                        speedX: Math.cos(angle) * speed,
+                        speedY: Math.sin(angle) * speed,
+                        life: 1200,
+                        maxLife: 1200,
+                        glowIntensity: 2
                     });
                 }
             }
-            
-            switchInteractionMode() {
-                const modes = Object.keys(this.mouseModes);
-                const currentIndex = modes.indexOf(this.interactionMode);
-                const nextIndex = (currentIndex + 1) % modes.length;
-                this.interactionMode = modes[nextIndex];
-                
-                const hint = document.getElementById('hint');
-                if (hint) {
-                    hint.textContent = `🎮 当前模式：${this.mouseModes[this.interactionMode]} | 按空格键切换模式 | 单击开始跟随 | 双击停止跟随 | 拖拽甩动粒子`;
-                    setTimeout(() => {
-                        hint.textContent = '🎮 交互提示：单击开始跟随 · 双击停止跟随 · 拖拽甩动粒子 · 按空格键切换交互模式 · 点击烟花按钮放烟花 · 鼠标悬停产生特效';
-                    }, 3000);
-                }
-                
-                this.createModeChangeEffect(this.mouse.x, this.mouse.y);
-            }
-            
+
             createModeChangeEffect(x, y) {
-                const particleCount = 30;
+                const particleCount = 40;
                 const colors = this.themes[this.theme].colors;
-                
+
                 for (let i = 0; i < particleCount; i++) {
                     const angle = (Math.PI * 2 / particleCount) * i;
-                    const speed = Math.random() * 6 + 3;
+                    const speed = 6 + Math.random() * 4;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    this.particles.push({
+                        ...this.createParticle(x, y),
+                        speedX: Math.cos(angle) * speed,
+                        speedY: Math.sin(angle) * speed,
+                        life: 1500,
+                        maxLife: 1500,
+                        glowIntensity: 2.5
+                    });
+                }
+            }
+
+            createDragTrail(x, y) {
+                if (this.trails.length < this.maxTrails) {
+                    const colors = this.themes[this.theme].colors;
+                    this.trails.push({
+                        x: x,
+                        y: y,
+                        size: 4 + Math.random() * 3,
+                        alpha: 1,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        speed: this.mouse.speed * 0.1
+                    });
+                }
+            }
+
+            createTrail(x, y) {
+                const colors = this.themes[this.theme].colors;
+                this.trails.push({
+                    x: x,
+                    y: y,
+                    size: 2 + Math.random() * 2,
+                    alpha: 1,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+
+            createDragEndEffect(start, end) {
+                const dx = end.x - start.x;
+                const dy = end.y - start.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const particleCount = Math.min(50, Math.floor(distance / 5));
+                const colors = this.themes[this.theme].colors;
+                const angle = Math.atan2(dy, dx);
+
+                for (let i = 0; i < particleCount; i++) {
+                    const speed = 8 + Math.random() * 4;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    this.particles.push({
+                        ...this.createParticle(end.x, end.y),
+                        speedX: Math.cos(angle) * speed,
+                        speedY: Math.sin(angle) * speed,
+                        life: 1500,
+                        maxLife: 1500,
+                        glowIntensity: 2
+                    });
+                }
+            }
+
+            applySwingForce(start, end) {
+                const dx = end.x - start.x;
+                const dy = end.y - start.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx);
+                const force = Math.min(distance * 0.15, 30);
+
+                this.particles.forEach(particle => {
+                    const particleDx = particle.x - end.x;
+                    const particleDy = particle.y - end.y;
+                    const particleDistance = Math.sqrt(particleDx * particleDx + particleDy * particleDy);
+
+                    if (particleDistance < this.mouse.radius) {
+                        const influence = (this.mouse.radius - particleDistance) / this.mouse.radius;
+                        const swingForce = force * influence * 1.5;
+                        particle.speedX += Math.cos(angle) * swingForce;
+                        particle.speedY += Math.sin(angle) * swingForce;
+                    }
+                });
+            }
+
+            createFireworks(x, y) {
+                // 随机位置生成烟花
+                const randomX = Math.random() * window.innerWidth;
+                const randomY = Math.random() * window.innerHeight * 0.7; // 只在屏幕上半部分生成
+                this.fireworksSystem.createFirework(randomX, randomY);
+            }
+
+            // COMBO功能已移除
+            handleCombo() {
+                // 空方法，不再显示COMBO提示
+            }
+
+            // 分数等级系统已移除
+
+            // 分数等级系统已移除
+
+            // 分数等级系统已移除
+
+            // 分数等级系统已移除
+
+            updateCurrentModeDescription() {
+                const currentMode = this.modes[this.currentModeIndex];
+                const modeDescriptionElement = document.getElementById('currentModeDescription');
+                if (modeDescriptionElement) {
+                    modeDescriptionElement.textContent = currentMode.description;
+                }
+            }
+
+            createRedPacketEffect(x, y, isSky = false) {
+                const particleCount = isSky ? 40 : 30;
+                const colors = ['#ff4757', '#ff6b81', '#ff8797', '#ff6b6b', '#ee5a6f'];
+                
+                for (let i = 0; i < particleCount; i++) {
+                    let angle;
+                    let speed;
+                    
+                    if (isSky) {
+                        // 从下向天抛洒，主要向上方向
+                        angle = (Math.random() * Math.PI - Math.PI / 2); // -90度到90度
+                        speed = 10 + Math.random() * 5; // 更快的速度
+                    } else {
+                        // 正常向四周抛洒
+                        angle = (Math.PI * 2 / particleCount) * i;
+                        speed = 4 + Math.random() * 3;
+                    }
+                    
                     const color = colors[Math.floor(Math.random() * colors.length)];
                     
                     this.particles.push({
@@ -1567,643 +1302,589 @@
                         speedX: Math.cos(angle) * speed,
                         speedY: Math.sin(angle) * speed,
                         color: color,
-                        life: 1000,
-                        maxLife: 1000,
-                        glowIntensity: 2,
-                        size: Math.random() * 2 + 1
+                        life: isSky ? 3000 : 1500, // 更长的生命周期
+                        maxLife: isSky ? 3000 : 1500,
+                        glowIntensity: 3,
+                        size: Math.random() * 3 + 1,
+                        gravity: isSky ? 0.1 : 0 // 为天空抛洒的粒子添加重力
                     });
                 }
+                
+                // 创建红包飘落效果
+                this.createFallingRedPackets(x, y, isSky);
             }
-            
-            handleClick(x, y) {
-                this.clickCount++;
+
+            createFallingRedPackets(x, y, isSky = false) {
+                const packetCount = isSky ? 6 : 4; // 减少红包数量以提高性能
                 
-                clearTimeout(this.clickTimer);
-                this.clickTimer = setTimeout(() => {
-                    this.clickCount = 0;
-                    this.create闭环Effect(x, y);
-                }, 3000);
-                
-                if (this.ripples.length < this.maxRipples) {
-                    this.createRipple(x, y);
-                }
-                
-                this.handleCombo();
-                this.createClickEffect(x, y, this.clickCount);
-            }
-            
-            createClickEffect(x, y, clickCount) {
-                switch (clickCount) {
-                    case 1:
-                        this.createExplosion(x, y, 8, 'basic');
-                        break;
-                    case 2:
-                        this.createRingExplosion(x, y);
-                        break;
-                    case 3:
-                        this.createSpiralExplosion(x, y);
-                        break;
-                    case 4:
-                        this.createStarExplosion(x, y);
-                        break;
-                    case 5:
-                        this.switchTheme();
-                        this.createFireworks(x, y);
-                        break;
-                    default:
-                        const effects = ['ring', 'spiral', 'star', 'fireworks', 'basic'];
-                        const randomEffect = effects[Math.floor(Math.random() * effects.length)];
-                        switch (randomEffect) {
-                            case 'ring':
-                                this.createRingExplosion(x, y);
-                                break;
-                            case 'spiral':
-                                this.createSpiralExplosion(x, y);
-                                break;
-                            case 'star':
-                                this.createStarExplosion(x, y);
-                                break;
-                            case 'fireworks':
-                                this.createFireworks(x, y);
-                                break;
-                            default:
-                                this.createExplosion(x, y, 8, 'basic');
-                            }
-                        }
-                    }
-                }, 8, 'basic');
-                            }
-                        }
-                    }
-                }
-                
-                createExplosion(x, y, particleCount = 20, type = 'basic') {
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const speed = 3 + Math.random() * 3;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
+                for (let i = 0; i < packetCount; i++) {
+                    setTimeout(() => {
+                        const packet = document.createElement('div');
+                        packet.className = 'red-packet';
+                        packet.style.position = 'fixed';
                         
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 1000,
-                            maxLife: 1000,
-                            glowIntensity: 1.5,
-                            size: Math.random() * 2 + 1
-                        });
-                    }
-                }
-                
-                createRingExplosion(x, y) {
-                    const particleCount = 40;
-                    const radius = 30;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const speed = 4 + Math.random() * 2;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        // 从点击位置开始
+                        packet.style.left = x + 'px';
+                        packet.style.top = y + 'px';
                         
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 1200,
-                            maxLife: 1200,
-                            glowIntensity: 2,
-                            size: Math.random() * 1.5 + 0.5
-                        });
-                    }
-                }
-                
-                createSpiralExplosion(x, y) {
-                    const particleCount = 60;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const radius = (i / particleCount) * 50;
-                        const speed = 2 + Math.random() * 2;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        packet.style.fontSize = '18px'; // 减小字体大小
+                        packet.style.color = '#ffd700';
+                        packet.style.textShadow = '0 0 8px rgba(255, 215, 0, 0.6)'; // 减少阴影效果
+                        packet.style.pointerEvents = 'none';
+                        packet.style.zIndex = '1000';
+                        packet.textContent = '🧧';
                         
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: (Math.cos(angle) * radius * 0.05) + (Math.cos(angle) * speed),
-                            speedY: (Math.sin(angle) * radius * 0.05) + (Math.sin(angle) * speed),
-                            color: color,
-                            life: 1500,
-                            maxLife: 1500,
-                            glowIntensity: 2,
-                            size: Math.random() * 1.5 + 0.5
-                        });
-                    }
-                }
-                
-                createStarExplosion(x, y) {
-                    const particleCount = 80;
-                    const points = 8;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / points) * Math.floor(i / (particleCount / points)) + (Math.random() * 0.2 - 0.1);
-                        const speed = 4 + Math.random() * 3;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 1800,
-                            maxLife: 1800,
-                            glowIntensity: 2.5,
-                            size: Math.random() * 2 + 0.5
-                        });
-                    }
-                }
-                
-                createFireworks(x, y) {
-                    this.fireworksSystem.createFirework(x, y);
-                }
-                
-                createRipple(x, y) {
-                    this.ripples.push({
-                        x: x,
-                        y: y,
-                        radius: 0,
-                        maxRadius: 100,
-                        alpha: 1,
-                        color: this.themes[this.theme].colors[0]
-                    });
-                }
-                
-                createTrail(x, y) {
-                    this.trails.push({
-                        x: x,
-                        y: y,
-                        size: 2 + Math.random() * 2,
-                        alpha: 1,
-                        color: this.themes[this.theme].colors[Math.floor(Math.random() * this.themes[this.theme].colors.length)]
-                    });
-                }
-                
-                createDragTrail(x, y) {
-                    if (this.trails.length < this.maxTrails) {
-                        const trail = {
-                            x: x,
-                            y: y,
-                            size: 3 + Math.random() * 3,
-                            alpha: 1,
-                            color: this.themes[this.theme].colors[Math.floor(Math.random() * this.themes[this.theme].colors.length)],
-                            speed: this.mouse.speed * 0.1
-                        };
-                        this.trails.push(trail);
-                    }
-                }
-                
-                createDragEndEffect(start, end) {
-                    const dx = end.x - start.x;
-                    const dy = end.y - start.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    const angle = Math.atan2(dy, dx);
-                    
-                    if (distance > 50) {
-                        const particleCount = Math.min(30, Math.floor(distance / 5));
-                        const colors = this.themes[this.theme].colors;
-                        
-                        for (let i = 0; i < particleCount; i++) {
-                            const speed = 5 + Math.random() * 5;
-                            const color = colors[Math.floor(Math.random() * colors.length)];
+                        if (isSky) {
+                            // 简化动画效果以提高性能
+                            const randomX = -3000 + Math.random() * 6000; // 减少水平距离
+                            const randomY = -4000 + Math.random() * 1000; // 减少向上距离
+                            const randomRotate = Math.random() * 4000; // 减少旋转角度
+                            const randomDuration = 10 + Math.random() * 6; // 减少持续时间
                             
-                            this.particles.push({
-                                ...this.createParticle(end.x, end.y),
-                                speedX: Math.cos(angle) * speed,
-                                speedY: Math.sin(angle) * speed,
-                                color: color,
-                                life: 1200,
-                                maxLife: 1200,
-                                glowIntensity: 2,
-                                size: Math.random() * 2 + 1
-                            });
+                            // 简化波浪效果参数
+                            const waveAmplitude = 80 + Math.random() * 150; // 减少波浪振幅
+                            const waveFrequency = 0.01 + Math.random() * 0.02; // 减少波浪频率
+                            const startTime = Date.now();
+                            
+                            // 添加碰撞检测和反弹效果
+                            packet.style.position = 'fixed';
+                            packet.style.left = x + 'px';
+                            packet.style.top = y + 'px';
+                            packet.style.pointerEvents = 'none';
+                            packet.style.zIndex = '1000';
+                            packet.style.fontSize = '22px'; // 减小红包大小
+                            
+                            // 使用JavaScript动画实现碰撞效果和波浪效果
+                            let posX = 0;
+                            let posY = 0;
+                            let velX = randomX / (randomDuration * 25); // 适当水平速度
+                            let velY = randomY / (randomDuration * 25); // 适当向上的速度
+                            let rotate = 0;
+                            let rotateSpeed = randomRotate / (randomDuration * 45); // 适当旋转速度
+                            let gravity = 0.15; // 增加重力，减少动画时间
+                            let bounce = 0.75; // 适当反弹系数
+                            
+                            // 使用requestAnimationFrame的节流版本
+                            let lastFrameTime = 0;
+                            const animate = (timestamp) => {
+                                if (!lastFrameTime) lastFrameTime = timestamp;
+                                const deltaTime = timestamp - lastFrameTime;
+                                if (deltaTime < 16) { // 约60fps
+                                    requestAnimationFrame(animate);
+                                    return;
+                                }
+                                lastFrameTime = timestamp;
+                                
+                                // 计算波浪效果
+                                const elapsedTime = (Date.now() - startTime) / 1000;
+                                const waveOffset = Math.sin(elapsedTime * waveFrequency) * waveAmplitude;
+                                
+                                // 更新位置，添加波浪效果
+                                posX += velX + waveOffset * 0.1;
+                                posY += velY + waveOffset * 0.05;
+                                velY += gravity;
+                                rotate += rotateSpeed;
+                                
+                                // 碰撞检测
+                                const windowWidth = window.innerWidth;
+                                const windowHeight = window.innerHeight;
+                                
+                                // 计算红包的实际位置
+                                const actualX = x + posX;
+                                const actualY = y + posY;
+                                
+                                // 左右边界碰撞
+                                if (actualX < 0) {
+                                    posX = -x;
+                                    velX = -velX * bounce;
+                                    rotateSpeed = -rotateSpeed * bounce;
+                                } else if (actualX > windowWidth - 30) { // 简化宽度计算
+                                    posX = windowWidth - 30 - x;
+                                    velX = -velX * bounce;
+                                    rotateSpeed = -rotateSpeed * bounce;
+                                }
+                                
+                                // 上边界碰撞
+                                if (actualY < 0) {
+                                    posY = -y;
+                                    velY = -velY * bounce;
+                                    rotateSpeed = -rotateSpeed * bounce;
+                                }
+                                
+                                // 下边界不碰撞，而是让红包消失
+                                if (actualY > windowHeight - 30) { // 简化高度计算
+                                    // 动画结束，移除元素
+                                    if (packet.parentNode) {
+                                        try {
+                                            document.body.removeChild(packet);
+                                        } catch (e) {
+                                            console.log('移除红包元素时出错:', e);
+                                        }
+                                    }
+                                    return;
+                                }
+                                
+                                // 防止红包卡在边界
+                                if (Math.abs(velX) < 0.1) {
+                                    velX = (Math.random() - 0.5) * 2;
+                                }
+                                if (Math.abs(velY) < 0.1) {
+                                    velY = (Math.random() - 0.5) * 2;
+                                }
+                                
+                                // 更新样式
+                                packet.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotate}deg) scale(1)`;
+                                
+                                // 减少透明度
+                                const opacity = 1 - (Date.now() - startTime) / (randomDuration * 1000);
+                                packet.style.opacity = Math.max(0, opacity);
+                                
+                                // 继续动画
+                                if (opacity > 0) {
+                                    requestAnimationFrame(animate);
+                                } else {
+                                    // 动画结束，移除元素
+                                    if (packet.parentNode) {
+                                        document.body.removeChild(packet);
+                                    }
+                                }
+                            };
+                            
+                            // 直接调用动画函数，使用之前声明的startTime变量
+                            requestAnimationFrame(animate);
+                        } else {
+                            // 正常向四周抛洒
+                            packet.style.animation = 'fallingPacket 3s ease-in forwards';
                         }
-                    }
-                }
-                
-                createDragEndStopEffect(x, y) {
-                    const particleCount = 15;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const speed = 2 + Math.random() * 2;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
                         
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 800,
-                            maxLife: 800,
-                            glowIntensity: 1.5,
-                            size: Math.random() * 1.5 + 0.5
-                        });
-                    }
-                }
-                
-                createDoubleClickEffect(x, y) {
-                    const particleCount = 25;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const speed = 4 + Math.random() * 3;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 1000,
-                            maxLife: 1000,
-                            glowIntensity: 2,
-                            size: Math.random() * 2 + 0.5
-                        });
-                    }
-                }
-                
-                create闭环Effect(x, y) {
-                    const particleCount = 50;
-                    const colors = this.themes[this.theme].colors;
-                    
-                    for (let i = 0; i < particleCount; i++) {
-                        const angle = (Math.PI * 2 / particleCount) * i;
-                        const speed = 3 + Math.random() * 2;
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        
-                        this.particles.push({
-                            ...this.createParticle(x, y),
-                            speedX: Math.cos(angle) * speed,
-                            speedY: Math.sin(angle) * speed,
-                            color: color,
-                            life: 1500,
-                            maxLife: 1500,
-                            glowIntensity: 1.5,
-                            size: Math.random() * 1.5 + 0.5
-                        });
-                    }
-                }
-                
-                handleCombo() {
-                    this.comboCount++;
-                    
-                    clearTimeout(this.comboTimer);
-                    this.comboTimer = setTimeout(() => {
-                        this.comboCount = 0;
-                    }, 1000);
-                    
-                    if (this.comboCount >= 3) {
-                        this.showComboEffect();
-                    }
-                }
-                
-                showComboEffect() {
-                    if (this.comboElement) {
-                        this.comboElement.textContent = `COMBO ${this.comboCount}!`;
-                        this.comboElement.style.opacity = '1';
+                        document.body.appendChild(packet);
                         
                         setTimeout(() => {
-                            this.comboElement.style.opacity = '0';
-                        }, 1000);
-                    }
+                            if (packet.parentNode) {
+                                document.body.removeChild(packet);
+                            }
+                        }, isSky ? 3000 : 2500);
+                    }, i * 150); // 减少间隔时间
                 }
-                
-                switchTheme() {
-                    const themes = Object.keys(this.themes);
-                    const currentIndex = themes.indexOf(this.theme);
-                    const nextIndex = (currentIndex + 1) % themes.length;
-                    this.theme = themes[nextIndex];
+            }
+
+            // 天上时不时下点小红包（恢复数量）
+            createRandomRedPackets() {
+                if (Math.random() < 0.03) { // 3%的概率生成红包
+                    const x = Math.random() * window.innerWidth;
+                    const y = -50;
                     
-                    document.body.style.background = this.themes[this.theme].bg;
-                    this.resetParticles();
-                }
-                
-                resetParticles() {
-                    this.particles = [];
-                    for (let i = 0; i < this.particleCount; i++) {
-                        this.particles.push(this.createParticle());
-                    }
-                }
-                
-                applySwingForce(start, end) {
-                    const dx = end.x - start.x;
-                    const dy = end.y - start.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    const angle = Math.atan2(dy, dx);
-                    const force = Math.min(distance * 0.1, 20);
+                    const packet = document.createElement('div');
+                    packet.className = 'red-packet';
+                    packet.style.position = 'fixed';
+                    packet.style.left = x + 'px';
+                    packet.style.top = y + 'px';
+                    packet.style.fontSize = '16px';
+                    packet.style.color = '#ffd700';
+                    packet.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.8)';
+                    packet.style.pointerEvents = 'none';
+                    packet.style.zIndex = '1000';
+                    packet.textContent = '🧧';
                     
-                    this.particles.forEach(particle => {
-                        const particleDx = particle.x - end.x;
-                        const particleDy = particle.y - end.y;
-                        const particleDistance = Math.sqrt(particleDx * particleDx + particleDy * particleDy);
-                        
-                        if (particleDistance < this.mouse.radius) {
-                            const influence = (this.mouse.radius - particleDistance) / this.mouse.radius;
-                            const swingForce = force * influence * 2;
-                            particle.speedX += Math.cos(angle) * swingForce;
-                            particle.speedY += Math.sin(angle) * swingForce;
+                    // 随机的飘落动画
+                    const duration = 5 + Math.random() * 3;
+                    const delay = Math.random() * 2;
+                    
+                    packet.style.animation = `randomFallingPacket ${duration}s ease-in ${delay}s forwards`;
+                    document.body.appendChild(packet);
+                    
+                    setTimeout(() => {
+                        if (packet.parentNode) {
+                            document.body.removeChild(packet);
                         }
-                    });
+                    }, (duration + delay) * 1000);
                 }
-                
-                toggleFollowing(state) {
-                    this.isFollowing = state;
+            }
+
+            // 天上时不时下福字和财字
+            createRandomFuCharacters() {
+                if (Math.random() < 0.02) { // 2%的概率生成文字
+                    const x = Math.random() * window.innerWidth;
+                    const y = -50;
                     
-                    if (state) {
-                        this.mouse.radius = 300;
-                        this.showInteractionHint();
-                    } else {
-                        this.mouse.radius = 250;
-                        this.showInteractionHint();
+                    // 随机选择福字或财字
+                    const characters = ['福', '财'];
+                    const randomChar = characters[Math.floor(Math.random() * characters.length)];
+                    
+                    const charElement = document.createElement('div');
+                    charElement.className = 'fu-character';
+                    charElement.style.position = 'fixed';
+                    charElement.style.left = x + 'px';
+                    charElement.style.top = y + 'px';
+                    charElement.style.fontSize = '20px';
+                    charElement.style.color = '#ffd700';
+                    charElement.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.8)';
+                    charElement.style.pointerEvents = 'none';
+                    charElement.style.zIndex = '1000';
+                    charElement.textContent = randomChar;
+                    
+                    // 随机的飘落动画
+                    const duration = 6 + Math.random() * 4;
+                    const delay = Math.random() * 2;
+                    
+                    charElement.style.animation = `randomFallingPacket ${duration}s ease-in ${delay}s forwards`;
+                    document.body.appendChild(charElement);
+                    
+                    setTimeout(() => {
+                        if (charElement.parentNode) {
+                            document.body.removeChild(charElement);
+                        }
+                    }, (duration + delay) * 1000);
+                }
+            }
+
+            // 定期随机向天空发射烟花，恢复频率
+            createRandomFireworks() {
+                if (Math.random() < 0.03) { // 3%的概率生成烟花，恢复频率
+                    const x = Math.random() * window.innerWidth;
+                    const y = window.innerHeight * 0.3 + Math.random() * window.innerHeight * 0.2;
+                    this.createFireworks(x, y);
+                }
+            }
+
+            createInitialEffect() {
+                setTimeout(() => {
+                    const centerX = this.canvas.width / 2;
+                    const centerY = this.canvas.height / 2;
+                    const particleCount = 80;
+                    const colors = this.themes[this.theme].colors;
+
+                    for (let i = 0; i < particleCount; i++) {
+                        const angle = (Math.PI * 2 / particleCount) * i;
+                        const speed = 4 + Math.random() * 3;
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+
+                        this.particles.push({
+                            ...this.createParticle(centerX, centerY),
+                            speedX: Math.cos(angle) * speed,
+                            speedY: Math.sin(angle) * speed,
+                            life: 2000,
+                            maxLife: 2000,
+                            glowIntensity: 2
+                        });
+                    }
+                }, 500);
+            }
+
+            updateParticles() {
+                this.particles.forEach((particle, index) => {
+                    particle.life -= 16;
+
+                    if (particle.life <= 0) {
+                        this.particles.splice(index, 1);
+                        if (this.particles.length < this.particleCount) {
+                            this.particles.push(this.createParticle());
+                        }
+                        return;
+                    }
+
+                    // 应用重力效果
+                    if (particle.gravity) {
+                        particle.speedY += particle.gravity;
+                    }
+
+                    // 无论是否开启跟随，都应用模式效果，确保粒子始终有交互
+                    this.applyModeEffect(particle);
+
+                    particle.speedX *= particle.friction;
+                    particle.speedY *= particle.friction;
+
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    this.handleWallCollision(particle);
+                });
+            }
+
+            applyModeEffect(particle) {
+                const dx = this.mouse.x - particle.x;
+                const dy = this.mouse.y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < this.mouse.radius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (this.mouse.radius - distance) / this.mouse.radius;
+
+                    switch (this.interactionMode) {
+                        case 'attract':
+                            particle.speedX += forceDirectionX * force * 5;
+                            particle.speedY += forceDirectionY * force * 5;
+                            // 吸引模式触发烟花
+                            if (force > 0.8 && Math.random() < 0.001) {
+                                this.createFireworks(particle.x, particle.y);
+                            }
+                            break;
+                        case 'repel':
+                            particle.speedX -= forceDirectionX * force * 8;
+                            particle.speedY -= forceDirectionY * force * 8;
+                            // 排斥模式触发烟花
+                            if (force > 0.8 && Math.random() < 0.001) {
+                                this.createFireworks(particle.x, particle.y);
+                            }
+                            break;
+                        case 'trail':
+                            if (this.mouseTrail.length > 10) {
+                                const trailPoint = this.mouseTrail[Math.floor(this.mouseTrail.length * 0.7)];
+                                const trailDx = trailPoint.x - particle.x;
+                                const trailDy = trailPoint.y - particle.y;
+                                const trailDistance = Math.sqrt(trailDx * trailDx + trailDy * trailDy);
+                                if (trailDistance < this.mouse.radius) {
+                                    const trailForceDirectionX = trailDx / trailDistance;
+                                    const trailForceDirectionY = trailDy / trailDistance;
+                                    const trailForce = (this.mouse.radius - trailDistance) / this.mouse.radius;
+                                    particle.speedX += trailForceDirectionX * trailForce * 4;
+                                    particle.speedY += trailForceDirectionY * trailForce * 4;
+                                    // 轨迹模式触发烟花
+                                    if (trailForce > 0.6 && Math.random() < 0.001) {
+                                        this.createFireworks(particle.x, particle.y);
+                                    }
+                                }
+                            }
+                            break;
+                        case 'shape':
+                            const shapeAngle = Math.atan2(dy, dx);
+                            const targetDistance = this.mouse.radius * 0.6;
+                            const distanceDiff = targetDistance - distance;
+                            particle.speedX += Math.cos(shapeAngle) * distanceDiff * 0.03;
+                            particle.speedY += Math.sin(shapeAngle) * distanceDiff * 0.03;
+                            particle.speedX += -Math.sin(shapeAngle) * 4;
+                            particle.speedY += Math.cos(shapeAngle) * 4;
+                            // 形状模式触发烟花
+                            if (Math.abs(distanceDiff) < 50 && Math.random() < 0.001) {
+                                this.createFireworks(particle.x, particle.y);
+                            }
+                            break;
+                        case 'wave':
+                            const waveAngle = Math.atan2(dy, dx);
+                            const waveDistance = distance / this.mouse.radius;
+                            const waveForce = Math.sin(Date.now() * 0.003 + waveDistance * 5) * force * 0.6;
+                            particle.speedX += Math.cos(waveAngle) * waveForce * 5;
+                            particle.speedY += Math.sin(waveAngle) * waveForce * 5;
+                            // 波浪模式触发烟花
+                            if (Math.abs(waveForce) > 0.5 && Math.random() < 0.001) {
+                                this.createFireworks(particle.x, particle.y);
+                            }
+                            break;
+                        case 'vortex':
+                            const vortexAngle = Math.atan2(dy, dx);
+                            particle.speedX += -Math.sin(vortexAngle) * force * 4;
+                            particle.speedY += Math.cos(vortexAngle) * force * 4;
+                            particle.speedX += Math.cos(vortexAngle) * force * 2;
+                            particle.speedY += Math.sin(vortexAngle) * force * 2;
+                            // 漩涡模式触发烟花
+                            if (force > 0.7 && Math.random() < 0.001) {
+                                this.createFireworks(particle.x, particle.y);
+                            }
+                            break;
+                        case 'gravity':
+                            particle.speedX += forceDirectionX * force * 10;
+                            particle.speedY += forceDirectionY * force * 10;
+                            // 重力模式触发烟花
+                            if (force > 0.9 && Math.random() < 0.001) {
+                                this.createFireworks(particle.x, particle.y);
+                            }
+                            break;
+                        case 'bounce':
+                            if (distance < this.mouse.radius * 0.3) {
+                                particle.speedX -= forceDirectionX * force * 12;
+                                particle.speedY -= forceDirectionY * force * 12;
+                                // 弹跳模式触发烟花
+                                if (force > 0.8 && Math.random() < 0.001) {
+                                    this.createFireworks(particle.x, particle.y);
+                                }
+                            } else if (distance < this.mouse.radius) {
+                                particle.speedX += forceDirectionX * force * 4;
+                                particle.speedY += forceDirectionY * force * 4;
+                            }
+                            break;
                     }
                 }
-                
-                animate() {
-                    const currentTime = performance.now();
-                    const deltaTime = currentTime - this.lastFrameTime;
-                    
-                    if (deltaTime < this.minFrameInterval) {
-                        this.animationFrame = requestAnimationFrame(() => this.animate());
+            }
+
+            handleWallCollision(particle) {
+                const bounceFactor = 0.8;
+                const wallForce = 5;
+
+                if (particle.x < 0) {
+                    particle.x = 0;
+                    particle.speedX = Math.abs(particle.speedX) * bounceFactor + wallForce;
+                } else if (particle.x > this.canvas.width) {
+                    particle.x = this.canvas.width;
+                    particle.speedX = -Math.abs(particle.speedX) * bounceFactor - wallForce;
+                }
+
+                if (particle.y < 0) {
+                    particle.y = 0;
+                    particle.speedY = Math.abs(particle.speedY) * bounceFactor + wallForce;
+                } else if (particle.y > this.canvas.height) {
+                    particle.y = this.canvas.height;
+                    particle.speedY = -Math.abs(particle.speedY) * bounceFactor - wallForce;
+                }
+            }
+
+            updateRipples() {
+                this.ripples.forEach((ripple, index) => {
+                    ripple.radius += 3;
+                    ripple.alpha -= 0.02;
+
+                    if (ripple.alpha <= 0) {
+                        this.ripples.splice(index, 1);
+                    }
+                });
+            }
+
+            updateTrails() {
+                this.trails.forEach((trail, index) => {
+                    trail.alpha -= 0.03;
+
+                    if (trail.alpha <= 0) {
+                        this.trails.splice(index, 1);
+                    }
+                });
+            }
+
+            drawParticles() {
+                this.particles.forEach(particle => {
+                    // 检查粒子属性是否有效
+                    if (isNaN(particle.x) || isNaN(particle.y) || isNaN(particle.size)) {
                         return;
                     }
                     
-                    this.lastFrameTime = currentTime;
-                    
-                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                    
-                    this.updateParticles();
-                    this.drawParticles();
-                    this.updateRipples();
-                    this.drawRipples();
-                    this.updateTrails();
-                    this.drawTrails();
-                    this.fireworksSystem.update();
-                    this.fireworksSystem.draw();
-                    
-                    this.animationFrame = requestAnimationFrame(() => this.animate());
-                }
-                
-                updateParticles() {
-                    this.particles.forEach((particle, index) => {
-                        particle.life -= 16;
-                        
-                        if (particle.life <= 0) {
-                            this.particles.splice(index, 1);
-                            if (this.particles.length < this.particleCount) {
-                                this.particles.push(this.createParticle());
-                            }
-                            return;
-                        }
-                        
-                        if (this.isFollowing) {
-                            const dx = this.mouse.x - particle.x;
-                            const dy = this.mouse.y - particle.y;
-                            const distance = Math.sqrt(dx * dx + dy * dy);
-                            
-                            if (distance < this.mouse.radius) {
-                                const forceDirectionX = dx / distance;
-                                const forceDirectionY = dy / distance;
-                                const force = (this.mouse.radius - distance) / this.mouse.radius;
-                                let followForce = force * 0.8;
-                                
-                                particle.speedX += forceDirectionX * followForce * 6;
-                                particle.speedY += forceDirectionY * followForce * 6;
-                            }
-                        }
-                        
-                        particle.speedX *= particle.friction;
-                        particle.speedY *= particle.friction;
-                        
-                        particle.x += particle.speedX;
-                        particle.y += particle.speedY;
-                        
-                        this.handleWallCollision(particle);
-                    });
-                }
-                
-                handleWallCollision(particle) {
-                    const bounceFactor = 0.8;
-                    
-                    if (particle.x < 0) {
-                        particle.x = 0;
-                        particle.speedX = Math.abs(particle.speedX) * bounceFactor;
-                    } else if (particle.x > this.canvas.width) {
-                        particle.x = this.canvas.width;
-                        particle.speedX = -Math.abs(particle.speedX) * bounceFactor;
-                    }
-                    
-                    if (particle.y < 0) {
-                        particle.y = 0;
-                        particle.speedY = Math.abs(particle.speedY) * bounceFactor;
-                    } else if (particle.y > this.canvas.height) {
-                        particle.y = this.canvas.height;
-                        particle.speedY = -Math.abs(particle.speedY) * bounceFactor;
-                    }
-                }
-                
-                drawParticles() {
-                    this.particles.forEach(particle => {
-                        const alpha = particle.life / particle.maxLife;
-                        
-                        this.ctx.save();
-                        this.ctx.globalAlpha = alpha;
-                        
+                    const alpha = particle.life / particle.maxLife;
+
+                    this.ctx.save();
+                    this.ctx.globalAlpha = alpha;
+
+                    try {
                         const gradient = this.ctx.createRadialGradient(
                             particle.x, particle.y, 0,
-                            particle.x, particle.y, particle.size * 3
+                            particle.x, particle.y, Math.max(0, particle.size * 3)
                         );
                         gradient.addColorStop(0, particle.color);
                         gradient.addColorStop(0.5, particle.color);
                         gradient.addColorStop(1, 'transparent');
-                        
+
                         this.ctx.beginPath();
-                        this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        this.ctx.arc(particle.x, particle.y, Math.max(0, particle.size), 0, Math.PI * 2);
                         this.ctx.fillStyle = gradient;
                         this.ctx.fill();
-                        
+
                         if (particle.glowIntensity > 1) {
                             this.ctx.shadowColor = particle.color;
-                            this.ctx.shadowBlur = 10 * particle.glowIntensity;
+                            this.ctx.shadowBlur = 15 * particle.glowIntensity;
                             this.ctx.shadowOffsetX = 0;
                             this.ctx.shadowOffsetY = 0;
-                            
+
                             this.ctx.beginPath();
-                            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                            this.ctx.arc(particle.x, particle.y, Math.max(0, particle.size * 0.8), 0, Math.PI * 2);
                             this.ctx.fillStyle = particle.color;
                             this.ctx.fill();
                         }
-                        
-                        this.ctx.restore();
-                    });
-                }
-                
-                updateRipples() {
-                    this.ripples.forEach((ripple, index) => {
-                        ripple.radius += 2;
-                        ripple.alpha -= 0.02;
-                        
-                        if (ripple.alpha <= 0) {
-                            this.ripples.splice(index, 1);
-                        }
-                    });
-                }
-                
-                drawRipples() {
-                    this.ripples.forEach(ripple => {
-                        this.ctx.save();
-                        this.ctx.globalAlpha = ripple.alpha;
-                        this.ctx.strokeStyle = ripple.color;
-                        this.ctx.lineWidth = 2;
-                        this.ctx.beginPath();
-                        this.ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-                        this.ctx.stroke();
-                        this.ctx.restore();
-                    });
-                }
-                
-                updateTrails() {
-                    this.trails.forEach((trail, index) => {
-                        trail.alpha -= 0.03;
-                        
-                        if (trail.alpha <= 0) {
-                            this.trails.splice(index, 1);
-                        }
-                    });
-                }
-                
-                drawTrails() {
-                    this.trails.forEach(trail => {
-                        this.ctx.save();
-                        this.ctx.globalAlpha = trail.alpha;
-                        
-                        const gradient = this.ctx.createRadialGradient(
-                            trail.x, trail.y, 0,
-                            trail.x, trail.y, trail.size * 2
-                        );
-                        gradient.addColorStop(0, trail.color);
-                        gradient.addColorStop(0.5, trail.color);
-                        gradient.addColorStop(1, 'transparent');
-                        
-                        this.ctx.beginPath();
-                        this.ctx.arc(trail.x, trail.y, trail.size, 0, Math.PI * 2);
-                        this.ctx.fillStyle = gradient;
-                        this.ctx.fill();
-                        this.ctx.restore();
-                    });
-                }
-            }
-            
-            function initParticleSystem() {
-                new ParticleSystem();
-            }
-            
-            document.addEventListener('DOMContentLoaded', function() {
-                const bgm = document.getElementById('bgm');
-                const bgmToggle = document.getElementById('bgm-toggle');
-                const fireworksToggle = document.getElementById('fireworks-toggle');
-                
-                if (bgmToggle) {
-                    bgmToggle.addEventListener('click', function() {
-                        if (bgm.paused) {
-                            bgm.volume = 0.3;
-                            bgm.play().catch(e => console.log('Audio autoplay prevented:', e));
-                            this.setAttribute('aria-pressed', 'true');
-                        } else {
-                            bgm.pause();
-                            this.setAttribute('aria-pressed', 'false');
-                        }
-                    });
-                }
-                
-                if (fireworksToggle) {
-                    fireworksToggle.addEventListener('click', function() {
-                        const particleSystem = window.particleSystem;
-                        if (particleSystem) {
-                            particleSystem.createFireworks(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
-                        }
-                    });
-                }
-            });
-            
-            function generateCard() {
-                const recipient = document.getElementById('recipient').value || '亲爱的朋友';
-                const wish1 = document.getElementById('wish1').value || '马到成功';
-                const wish2 = document.getElementById('wish2').value || '万事如意';
-                const wish3 = document.getElementById('wish3').value || '财源广进';
-                const signature = document.getElementById('signature').value || '你的朋友';
-                const year = document.getElementById('year').value || '2026';
-                const style = document.getElementById('style').value;
-                const bgColor = document.getElementById('bgColor').value;
-                
-                const previewMessage = document.getElementById('previewMessage');
-                const previewContent = document.getElementById('previewContent');
-                
-                previewMessage.innerHTML = `${recipient}<br>${wish1}<br>${wish2}<br>${wish3}<br>${signature}<br>${year}年`;
-                
-                const bgColors = {
-                    red: 'linear-gradient(135deg, #ff6b6b, #ee5a6f)',
-                    gold: 'linear-gradient(135deg, #ffd700, #ffed4e)',
-                    blue: 'linear-gradient(135deg, #4ecdc4, #45b7d1)',
-                    purple: 'linear-gradient(135deg, #9b59b6, #8e44ad)'
-                };
-                
-                previewContent.style.background = bgColors[bgColor] || bgColors.red;
-            }
-            
-            function resetForm() {
-                document.getElementById('recipient').value = '';
-                document.getElementById('wish1').value = '';
-                document.getElementById('wish2').value = '';
-                document.getElementById('wish3').value = '';
-                document.getElementById('signature').value = '';
-                document.getElementById('year').value = '2026';
-                document.getElementById('style').value = 'classic';
-                document.getElementById('bgColor').value = 'red';
-                
-                generateCard();
-            }
-            
-            function downloadCard() {
-                const previewContent = document.getElementById('previewContent');
-                html2canvas(previewContent).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = '马年贺卡.png';
-                    link.href = canvas.toDataURL();
-                    link.click();
+                    } catch (error) {
+                        // 忽略渐变错误，继续绘制
+                    }
+
+                    this.ctx.restore();
                 });
             }
-            
-            function shareCard() {
-                if (navigator.share) {
-                    navigator.share({
-                        title: '马年贺卡',
-                        text: '祝你马年大吉，万事如意！',
-                        url: window.location.href
-                    });
-                } else {
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        alert('链接已复制到剪贴板，快来分享给朋友吧！');
-                    });
-                }
+
+            drawRipples() {
+                this.ripples.forEach(ripple => {
+                    this.ctx.save();
+                    this.ctx.globalAlpha = ripple.alpha;
+                    this.ctx.strokeStyle = ripple.color;
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                    this.ctx.restore();
+                });
             }
-        </script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    </body>
+
+            drawTrails() {
+                this.trails.forEach(trail => {
+                    this.ctx.save();
+                    this.ctx.globalAlpha = trail.alpha;
+
+                    const gradient = this.ctx.createRadialGradient(
+                        trail.x, trail.y, 0,
+                        trail.x, trail.y, trail.size * 2
+                    );
+                    gradient.addColorStop(0, trail.color);
+                    gradient.addColorStop(0.5, trail.color);
+                    gradient.addColorStop(1, 'transparent');
+
+                    this.ctx.beginPath();
+                    this.ctx.arc(trail.x, trail.y, trail.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.fill();
+                    this.ctx.restore();
+                });
+            }
+
+            animate() {
+                const currentTime = performance.now();
+                const deltaTime = currentTime - this.lastFrameTime;
+
+                if (deltaTime < this.minFrameInterval) {
+                    requestAnimationFrame(() => this.animate());
+                    return;
+                }
+
+                this.lastFrameTime = currentTime;
+
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.updateParticles();
+                this.drawParticles();
+                this.updateRipples();
+                this.drawRipples();
+                this.updateTrails();
+                this.drawTrails();
+                this.fireworksSystem.update();
+                this.fireworksSystem.draw();
+                
+                // 每两帧生成一次随机元素，减少DOM操作频率
+                if (Math.floor(this.lastFrameTime / 32) % 2 === 0) {
+                    // 定期生成随机飘落的小红包
+                    this.createRandomRedPackets();
+                    // 定期生成随机飘落的福字
+                    this.createRandomFuCharacters();
+                    // 定期随机向天空发射烟花
+                    this.createRandomFireworks();
+                }
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        window.addEventListener('load', () => {
+            new ParticleSystem();
+        });
+    </script>
+    
+    <!-- 喜庆的背景音乐 -->
+    <audio id="bgm" src="https://www.soundjay.com/music/mp3s/chinese-new-year.mp3" preload="auto" loop></audio>
+    
+    <script>
+    // 页面加载时尝试播放音乐
+    window.addEventListener('load', () => {
+        const bgm = document.getElementById('bgm');
+        if (bgm) {
+            bgm.volume = 0.3;
+            bgm.play().catch(e => {
+                console.log('音频自动播放被阻止，需要用户交互后才能播放:', e);
+            });
+        }
+    });
+    </script>
+    
+    <script src="automated_test.js"></script>
+</body>
 </html>
